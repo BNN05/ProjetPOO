@@ -127,7 +127,35 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="C_Case.cpp" />
+    <ClCompile Include="C_EmptyCase.cpp" />
+    <ClCompile Include="C_EnemyStats.cpp" />
+    <ClCompile Include="C_Entity.cpp" />
+    <ClCompile Include="C_Item.cpp" />
+    <ClCompile Include="C_Monster.cpp" />
+    <ClCompile Include="C_Player.cpp" />
+    <ClCompile Include="C_PlayerStats.cpp" />
+    <ClCompile Include="C_Screen.cpp" />
+    <ClCompile Include="C_Terrain.cpp" />
+    <ClCompile Include="C_UiManager.cpp" />
+    <ClCompile Include="C_WallCase.cpp" />
+    <ClCompile Include="C_Widget.cpp" />
     <ClCompile Include="POOBOUH.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C_Case.h" />
+    <ClInclude Include="C_EmptyCase.h" />
+    <ClInclude Include="C_EnemyStats.h" />
+    <ClInclude Include="C_Entity.h" />
+    <ClInclude Include="C_Item.h" />
+    <ClInclude Include="C_Monster.h" />
+    <ClInclude Include="C_Player.h" />
+    <ClInclude Include="C_PlayerStats.h" />
+    <ClInclude Include="C_Screen.h" />
+    <ClInclude Include="C_Terrain.h" />
+    <ClInclude Include="C_UiManager.h" />
+    <ClInclude Include="C_WallCase.h" />
+    <ClInclude Include="C_Widget.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
