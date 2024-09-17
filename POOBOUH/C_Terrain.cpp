@@ -20,7 +20,10 @@ void C_Terrain::DrawTerrain()
 
 	for (int i = 0; i < C_Terrain::lengthX; i++) {
 		for (int j = 0; j < C_Terrain::lengthY; j++) {
-			std::cout << C_Terrain::map[i][j]->sprite;
+			if(C_Terrain::map[i][j]->entity != nullptr)
+				std::cout << C_Terrain::map[i][j]->entity->sprite;
+			else
+				std::cout << C_Terrain::map[i][j]->sprite;
 		}
 		std::cout << "\n";
 	}

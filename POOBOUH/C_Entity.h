@@ -5,7 +5,7 @@ class C_Entity
 {
 public:
 	Vector2D position;
-	char sprite;
+	std::string sprite;
 	int health;
 	int attackPoints;
 	int movementPoints;
