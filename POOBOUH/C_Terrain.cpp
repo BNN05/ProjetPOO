@@ -2,14 +2,23 @@
 #include <iostream>
 #include "Windows.h"
 #include <string>
+#include "C_TerrainLoader.h"
 
 void C_Terrain::GenerateMap()
 {
-
+	C_TerrainLoader terrainLoader;
+	auto v = terrainLoader.LoadMap("MapFiles/Level1.csv");	
+	
 	for (int i = 0; i < C_Terrain::lengthX; i++) {
 		for (int j = 0; j < C_Terrain::lengthY; j++) {
 			C_Case* tile = new C_Case();
-			tile->Init(u8"🟦", Vector2D(i, j));
+			if (v[i][j] != u8"🟦") {
+				//TODO : Gestion entité
+				tile->Init(u8"🟩", Vector2D(i, j));
+
+			}
+			else
+				tile->Init(v[i][j], Vector2D(i, j));
 			this->map[i][j] = tile;
 		}
 	}

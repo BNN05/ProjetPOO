@@ -1,4 +1,4 @@
-#include "C_TerrainLoader.h"
+﻿#include "C_TerrainLoader.h"
 
 C_TerrainLoader::C_TerrainLoader()
 {
@@ -33,9 +33,9 @@ void C_TerrainLoader::parseLineInitial(const string& line, vector<string>& row)
     while (getline(ss, cell, ','))
     {
         if (cell == "x")
-            row.push_back("x");
+            row.push_back(u8"🟦");
         else if (cell.empty())
-            row.push_back("o"); // Replace empty cells with "o"
+            row.push_back(u8"🟩"); // Replace empty cells with "o"
         else
             row.push_back(cell); // Replace other characters
     }
@@ -60,7 +60,7 @@ void C_TerrainLoader::replaceOWithMapData(const string& filename)
         while (getline(ss, cell, ','))
         {
             if (colIndex < data[rowIndex].size() && !cell.empty() && data[rowIndex][colIndex] == "o")
-                data[rowIndex][colIndex] = cell.empty() ? "o" : cell;
+                data[rowIndex][colIndex] = cell.empty() ? u8"⬛" : cell;
             colIndex++;
         }
         rowIndex++;

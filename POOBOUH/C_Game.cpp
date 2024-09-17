@@ -2,7 +2,7 @@
 #include "Windows.h"
 
 
-C_Game::C_Game() : Terrain(15,15) {
+C_Game::C_Game() : Terrain(26,26) {
 }
 
 C_Game::~C_Game()
