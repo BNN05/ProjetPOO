@@ -8,7 +8,7 @@ class C_Game
 public:
 	C_Game();
 	~C_Game();
-
+	void Init();
 	void Draw();
 	void StartGame(); //Init
 	void ResetGame();
