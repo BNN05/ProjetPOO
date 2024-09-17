@@ -16,9 +16,9 @@ void C_Terrain::GenerateMap()
 	for (int i = 0; i < C_Terrain::lengthX; i++) {
 		for (int j = 0; j < C_Terrain::lengthY; j++) {
 			C_Case* tile = new C_Case();
-			if (v[i][j] != u8"🟦") { //Carré bleu
-				tile->Init(u8"🟩", Vector2D(i, j)); //Carré vert
-				if (v[i][j] != u8"🟩") {//Carré vert
+			if (v[i][j] != u8"🟫") { //Carré marron
+				tile->Init(u8"🔳", Vector2D(i, j)); //Carré vide
+				if (v[i][j] != u8"🔳") {//Carré vide
 					
 				}  
 				//TODO : Gestion entité
@@ -63,7 +63,12 @@ C_Terrain::C_Terrain(int x, int y) : lengthX(x), lengthY(y) {
     }
 }
 
-C_Case C_Terrain::GetCase(int x, int y)
+C_Case* C_Terrain::GetCase(int x, int y)
 {
-	return C_Case();
+	if (x >= 0 && x < lengthX && y >= 0 && y < lengthY)
+	{
+		return map[x][y]; // Retourne la case 
+	}
+	return nullptr; 
 }
+

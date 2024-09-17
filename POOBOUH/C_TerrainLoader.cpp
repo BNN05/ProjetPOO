@@ -33,9 +33,9 @@ void C_TerrainLoader::parseLineInitial(const string& line, vector<string>& row)
     while (getline(ss, cell, ','))
     {
         if (cell == "x")
-            row.push_back(u8"🟦");
+            row.push_back(u8"🟫");
         else if (cell.empty())
-            row.push_back(u8"🟩"); // Replace empty cells with "o"
+            row.push_back(u8"🔳"); // Replace empty cells with "o"
         else
             row.push_back(cell); // Replace other characters
     }

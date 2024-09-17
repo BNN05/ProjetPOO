@@ -15,5 +15,6 @@ public:
 	void Init(std::string sprite,Vector2D pos);
 
 	C_Case();
+	virtual ~C_Case();
 };
 
