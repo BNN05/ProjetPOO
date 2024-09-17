@@ -22,16 +22,15 @@ public:
 	virtual bool CanMove();
 	virtual bool CanAttack();
 
-	void Move(Vector2D newPos);
-	void Attack();
-	void EndTurn();
+	virtual void Move(Vector2D newPos);
+	virtual void Attack();
+	virtual void EndTurn();
 
 	void AddListener(IEventListener* listener);
 	void RemoveListener(IEventListener* listener);
 
 private:
 	std::vector<IEventListener*> listeners;
-	Vector2D position;
 
 };
 

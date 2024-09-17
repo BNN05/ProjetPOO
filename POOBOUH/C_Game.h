@@ -13,6 +13,8 @@ public:
 	void StartGame(); //Init
 	void ResetGame();
 
+	static C_Game Instance;
+
 	C_Terrain Terrain;
 
 };

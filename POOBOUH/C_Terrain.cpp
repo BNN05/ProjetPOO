@@ -62,3 +62,8 @@ C_Terrain::C_Terrain(int x, int y) : lengthX(x), lengthY(y) {
         }
     }
 }
+
+C_Case C_Terrain::GetCase(int x, int y)
+{
+	return C_Case();
+}
