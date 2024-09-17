@@ -144,6 +144,9 @@
     <ClCompile Include="C_WallCase.cpp" />
     <ClCompile Include="C_Widget.cpp" />
     <ClCompile Include="E_CaseType.cpp" />
+    <ClCompile Include="E_Direction.cpp" />
+    <ClCompile Include="E_Layer.cpp" />
+    <ClCompile Include="IEventListener.cpp" />
     <ClCompile Include="E_Key.cpp" />
     <ClCompile Include="POOBOUH.cpp" />
     <ClCompile Include="Vector2D.cpp" />
@@ -166,6 +169,9 @@
     <ClInclude Include="C_WallCase.h" />
     <ClInclude Include="C_Widget.h" />
     <ClInclude Include="E_CaseType.h" />
+    <ClInclude Include="E_Direction.h" />
+    <ClInclude Include="E_Layer.h" />
+    <ClInclude Include="IEventListener.h" />
     <ClInclude Include="E_Key.h" />
     <ClInclude Include="Vector2D.h" />
   </ItemGroup>

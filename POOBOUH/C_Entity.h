@@ -1,6 +1,8 @@
 #pragma once
 #include "Vector2D.h"
 #include "string"
+#include "IEventListener.h"
+#include <vector>
 
 class C_Entity
 {
@@ -13,16 +15,23 @@ public:
 	bool shouldPlay;
 	 
 
-	void OnEnterState();
-	void ComputeState();
-	void OnExitState();
+	virtual void OnEnterState();
+	virtual void ComputeState();
+	virtual void OnExitState();
 
-	bool CanMove();
-	bool CanAttack();
+	virtual bool CanMove();
+	virtual bool CanAttack();
 
-	void Move();
+	void Move(Vector2D newPos);
 	void Attack();
 	void EndTurn();
+
+	void AddListener(IEventListener* listener);
+	void RemoveListener(IEventListener* listener);
+
+private:
+	std::vector<IEventListener*> listeners;
+	Vector2D position;
 
 };
 

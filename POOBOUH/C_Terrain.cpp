@@ -4,6 +4,10 @@
 #include <string>
 #include "C_TerrainLoader.h"
 
+void C_Terrain::OnMove(Vector2D newPosition) {
+
+
+}
 void C_Terrain::GenerateMap()
 {
 	C_TerrainLoader terrainLoader;
@@ -12,14 +16,20 @@ void C_Terrain::GenerateMap()
 	for (int i = 0; i < C_Terrain::lengthX; i++) {
 		for (int j = 0; j < C_Terrain::lengthY; j++) {
 			C_Case* tile = new C_Case();
-			if (v[i][j] != u8"🟦") {
+			if (v[i][j] != u8"🟦") { //Carré bleu
+				tile->Init(u8"🟩", Vector2D(i, j)); //Carré vert
+				if (v[i][j] != u8"🟩") {//Carré vert
+					
+				}  
 				//TODO : Gestion entité
-				tile->Init(u8"🟩", Vector2D(i, j));
+				//entity.addListener(&terrain)
+				
 
 			}
 			else
 				tile->Init(v[i][j], Vector2D(i, j));
 			this->map[i][j] = tile;
+
 		}
 	}
 }
