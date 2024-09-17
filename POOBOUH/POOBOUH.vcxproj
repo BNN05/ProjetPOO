@@ -132,6 +132,7 @@
     <ClCompile Include="C_EnemyStats.cpp" />
     <ClCompile Include="C_Entity.cpp" />
     <ClCompile Include="C_Game.cpp" />
+    <ClCompile Include="C_InputListener.cpp" />
     <ClCompile Include="C_Item.cpp" />
     <ClCompile Include="C_Monster.cpp" />
     <ClCompile Include="C_Player.cpp" />
@@ -143,6 +144,7 @@
     <ClCompile Include="C_WallCase.cpp" />
     <ClCompile Include="C_Widget.cpp" />
     <ClCompile Include="E_CaseType.cpp" />
+    <ClCompile Include="E_Key.cpp" />
     <ClCompile Include="POOBOUH.cpp" />
     <ClCompile Include="Vector2D.cpp" />
   </ItemGroup>
@@ -152,6 +154,7 @@
     <ClInclude Include="C_EnemyStats.h" />
     <ClInclude Include="C_Entity.h" />
     <ClInclude Include="C_Game.h" />
+    <ClInclude Include="C_InputListener.h" />
     <ClInclude Include="C_Item.h" />
     <ClInclude Include="C_Monster.h" />
     <ClInclude Include="C_Player.h" />
@@ -163,6 +166,7 @@
     <ClInclude Include="C_WallCase.h" />
     <ClInclude Include="C_Widget.h" />
     <ClInclude Include="E_CaseType.h" />
+    <ClInclude Include="E_Key.h" />
     <ClInclude Include="Vector2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
