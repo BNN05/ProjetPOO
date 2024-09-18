@@ -62,6 +62,6 @@ void C_Monster::OnExitState()
 
 void C_Monster::Move(Vector2D newPos)
 {
-
+    C_Game::Instance.Terrain.OnMove(position, newPos);
 }
 

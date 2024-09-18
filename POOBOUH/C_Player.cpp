@@ -45,10 +45,16 @@ void C_Player::ComputeState()
             Move(newPosition);
         }
     }
+
+    C_Player::OnExitState();
+}
+
+void C_Player::OnExitState()
+{
 }
 
 
 void C_Player::Move(Vector2D newPos)
 {
-
+    C_Game::Instance.Terrain.OnMove(position, newPos);
 }
