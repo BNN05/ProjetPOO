@@ -7,7 +7,7 @@
 class C_Terrain :public IEventListener
 {
 public:
-	void OnMove(Vector2D newPosition) override;
+	void OnMove(Vector2D oldPosition,Vector2D newPosition) override;
 	int lengthX = 15;
 	int lengthY = 15; 
 	C_Case*** map;

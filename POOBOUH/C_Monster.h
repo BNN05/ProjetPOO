@@ -10,9 +10,13 @@ public:
 	void OnExitState() override;
 
 	void Move(Vector2D newPos) override;
-	void Attack() override;
-	void EndTurn() override;
+	void Attack() override {};
+	void EndTurn() override {};
+	C_Monster(int health, int attackPoints) {
+		this->health = health;
+		this->attackPoints = attackPoints;
+	}
 
-	
+
 };
 

@@ -29,19 +29,22 @@ public:
 	virtual bool ShouldPlay() {
 		return shouldPlay;
 	}
+	C_Entity(int health = 100, int attackPoints = 10, int movementPoints = 5)
+		: health(health), attackPoints(attackPoints), movementPoints(movementPoints), shouldPlay(false)
+	{
+	}
 
-
-
-	virtual void OnEnterState();
-	virtual void ComputeState();
-	virtual void OnExitState();
+	virtual void Init() {};
+	virtual void OnEnterState() {};
+	virtual void ComputeState() {};
+	virtual void OnExitState() {};
 
 	virtual bool CanMove();
 	virtual bool CanAttack();
 
 	virtual void Move(Vector2D newPos);
-	virtual void Attack();
-	virtual void EndTurn();
+	virtual void Attack() {};
+	virtual void EndTurn() {};
 
 	void AddListener(IEventListener* listener);
 	void RemoveListener(IEventListener* listener);

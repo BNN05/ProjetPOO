@@ -13,6 +13,7 @@ public:
 	E_CaseType caseType;
 
 	void Init(std::string sprite,Vector2D pos);
+	void AddEntity(C_Entity* entity);
 
 	C_Case();
 	virtual ~C_Case();

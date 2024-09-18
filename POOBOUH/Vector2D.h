@@ -11,5 +11,9 @@ public:
 		: x(x), y(y)
 	{
 	}
+	Vector2D()
+		: x(0), y(0)
+	{
+	}
 };
 

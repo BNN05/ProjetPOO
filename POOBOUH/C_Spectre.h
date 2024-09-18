@@ -1,6 +1,7 @@
 #pragma once
+#include <string>
 #include "C_Monster.h"
-class C_Golem : public C_Monster
+class C_Spectre : public C_Monster
 {
 public:
 	std::string sprite;
@@ -28,7 +29,7 @@ public:
 	void Init() override;
 
 
-	C_Golem()
+	C_Spectre()
 		: C_Monster(100, 10), // Appel du constructeur de C_Monster
 		sprite("default_sprite"),
 		movementPoints(5),
@@ -36,4 +37,3 @@ public:
 	{
 	}
 };
-

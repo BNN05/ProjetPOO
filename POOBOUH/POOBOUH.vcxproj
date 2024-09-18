@@ -138,7 +138,9 @@
     <ClCompile Include="C_Monster.cpp" />
     <ClCompile Include="C_Player.cpp" />
     <ClCompile Include="C_PlayerStats.cpp" />
+    <ClCompile Include="C_Reaper.cpp" />
     <ClCompile Include="C_Screen.cpp" />
+    <ClCompile Include="C_Spectre.cpp" />
     <ClCompile Include="C_Terrain.cpp" />
     <ClCompile Include="C_TerrainLoader.cpp" />
     <ClCompile Include="C_UiManager.cpp" />
@@ -164,7 +166,9 @@
     <ClInclude Include="C_Monster.h" />
     <ClInclude Include="C_Player.h" />
     <ClInclude Include="C_PlayerStats.h" />
+    <ClInclude Include="C_Reaper.h" />
     <ClInclude Include="C_Screen.h" />
+    <ClInclude Include="C_Spectre.h" />
     <ClInclude Include="C_Terrain.h" />
     <ClInclude Include="C_TerrainLoader.h" />
     <ClInclude Include="C_UiManager.h" />

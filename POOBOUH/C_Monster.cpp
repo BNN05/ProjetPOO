@@ -64,3 +64,4 @@ void C_Monster::Move(Vector2D newPos)
 {
 
 }
+

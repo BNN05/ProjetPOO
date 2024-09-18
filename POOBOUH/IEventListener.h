@@ -3,6 +3,6 @@
 class IEventListener {
 public:
     virtual ~IEventListener() = default;
-    virtual void OnMove(Vector2D newPosition) = 0; // Méthode d'événement
+    virtual void OnMove(Vector2D oldPosition,Vector2D newPosition) = 0; // Méthode d'événement
 };
 

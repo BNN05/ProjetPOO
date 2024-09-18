@@ -18,12 +18,14 @@ void C_Game::Init()
 
 void C_Game::Draw()
 {
+	system("cls");
+	C_Game::Terrain.DrawTerrain();
 }
 
 void C_Game::StartGame()
 {
-	C_Game::Terrain.GenerateMap();
-	C_Game::Terrain.DrawTerrain();   
+	C_Game::Terrain.GenerateMap(); 
+	Draw();
 	/*getchar();
 	system("cls");
 	C_Game::Terrain.DrawTerrain();*/
