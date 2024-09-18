@@ -4,7 +4,7 @@
 
 class C_Widget {
 public:
-    C_Widget(const C_Entity& entity);
-    void displayStats() const;
+    C_Widget() = default;
+    void displayStats(C_Entity* entity) const;
     const C_Entity& entity;
 };

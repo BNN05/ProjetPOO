@@ -19,7 +19,9 @@ void C_Game::Init()
 void C_Game::Draw()
 {
 	system("cls");
+	C_Game::Screen.DrawEnemyScreen();
 	C_Game::Terrain.DrawTerrain();
+	C_Game::Screen.DrawPlayerScreen();
 }
 
 void C_Game::StartGame()

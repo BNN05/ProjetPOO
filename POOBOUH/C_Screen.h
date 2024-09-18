@@ -6,8 +6,10 @@ class C_Screen
 {
 public:
 	
-	C_Widget* widgets[5];
+	C_Widget* enemyWidgets[5];
+	C_Widget* playerWidget;
 
-	void DrawScreen();
+	void DrawEnemyScreen();
+	void DrawPlayerScreen();
 };
 

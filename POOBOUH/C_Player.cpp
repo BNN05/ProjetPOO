@@ -11,6 +11,10 @@ void C_Player::Init()
     C_Player::attackPoints = 3;
     C_Player::movementPoints = 3;
     C_Player::shouldPlay = true;
+
+    C_Player::currentHealth = health;
+    C_Player::currentAttackPoints = attackPoints;
+
 }
 
 void C_Player::OnEnterState()

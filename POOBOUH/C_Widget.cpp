@@ -1,18 +1,16 @@
 ﻿#include "C_Widget.h"
 
-C_Widget::C_Widget(const C_Entity& entity)
-    : entity(entity) {}
 
-void C_Widget::displayStats() const {
+void C_Widget::displayStats(C_Entity* entity) const {
 
-    std::cout << "\n" << "entity.name" << " : ";
+    std::cout << "\n" << entity->sprite << " : ";
 
-    for (int i = 0; i < entity.currentHealth; ++i) {
+    for (int i = 0; i < entity->currentHealth; ++i) {
         std::cout << u8"❤️";
     }    
-    std::cout << "  ";
+    std::cout << " | ";
 
-    for (int i = 0; i < entity.currentAttackPoints; ++i) {
+    for (int i = 0; i < entity->currentAttackPoints; ++i) {
         std::cout << u8"⚔️";
     }
 
