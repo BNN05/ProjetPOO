@@ -20,6 +20,7 @@ public:
 	void GenerateEntity();
 
 	C_Case* GetCase(int x, int y);
+	std::vector<C_Case*> GetAdjacentCase(Vector2D pos);
 	
 
 	C_Terrain();

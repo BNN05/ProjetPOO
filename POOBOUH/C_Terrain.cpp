@@ -185,3 +185,29 @@ C_Case* C_Terrain::GetCase(int x, int y)
 	return nullptr; 
 }
 
+
+std::vector<C_Case*> C_Terrain::GetAdjacentCase(Vector2D pos)
+{
+	vector<Vector2D> adjacentPositions{};
+	adjacentPositions.push_back(Vector2D(pos.x, pos.y - 1)); // Haut
+	adjacentPositions.push_back(Vector2D(pos.x, pos.y + 1)); // Bas 
+	adjacentPositions.push_back(Vector2D(pos.x - 1, pos.y)); // Gauche 
+	adjacentPositions.push_back(Vector2D(pos.x + 1, pos.y)); // Droite 
+
+	// Filtrage des cases valides
+	std::vector<C_Case*> validPositions;
+	for (const auto& pos : adjacentPositions)
+	{
+		C_Case* adjacentCase = C_Game::Instance.Terrain.GetCase(pos.x, pos.y);
+
+		if (adjacentCase != nullptr
+			&& adjacentCase->entity != nullptr) // Vérifie qu'il n'y a pas d'entité sur la case
+		{
+			validPositions.push_back(adjacentCase);  // Ajouter la position valide
+		}
+	}
+	return validPositions;
+}
+
+
+

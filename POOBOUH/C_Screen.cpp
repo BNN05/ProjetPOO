@@ -6,12 +6,25 @@
 
 void C_Screen::DrawEnemyScreen()
 {
-    for (size_t i = 1; i < 6; i++)
+    auto potentialCase = C_Game::Instance.Terrain.GetAdjacentCase(C_Game::Instance.Player->position);
+    vector<C_Entity*> enemies{ };
+    for (auto i : potentialCase)
     {
-        if (enemyWidgets[i] == nullptr)
+        if (i->entity != nullptr) {
+            enemies.push_back(i->entity);
+        }
+        else
+            enemies.push_back(nullptr);
+    }
+
+    for (size_t i = 0; i < 5; i++)
+    {
+        if (enemies.size() <=i)
+            return;
+        if (enemies[i] == nullptr)
             std::cout << "nullptr" << std::endl; //pour debug
         else
-            enemyWidgets[i]->displayStats(C_Game::Instance.Terrain.EntityManager.Entities[i]);
+            enemyWidgets[i]->displayStats(enemies[i]);
     }
 }
 
