@@ -9,6 +9,8 @@ public:
 	void ComputeEntities();
 	void AddEntity(C_Entity* entity);
 
+	void AddPlayer(C_Entity* entity);
+
 	C_EntityManager() = default;
 };
 

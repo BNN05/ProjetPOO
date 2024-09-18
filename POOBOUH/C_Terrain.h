@@ -13,7 +13,7 @@ public:
 	int lengthY = 15; 
 	C_Case*** map;
 	C_EntityManager EntityManager;
-
+	std::vector<C_Case*> GetPath(Vector2D positionStart, Vector2D positionEnd);
 	void GenerateMap();
 	void DrawTerrain();
 	C_Terrain(int x, int y);

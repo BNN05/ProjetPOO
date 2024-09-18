@@ -7,6 +7,12 @@
 #include "C_Spectre.h"
 #include "C_Reaper.h"
 #include "C_Player.h"
+#include "C_Game.h"
+#include <queue>
+#include <vector>
+#include <utility> // Pour std::pair
+#include <algorithm> 
+#include <map>
 
 void C_Terrain::OnMove(Vector2D oldPosition,Vector2D newPosition) {
 	if (map[(int)oldPosition.x][(int)oldPosition.y]->entity == nullptr)
@@ -19,6 +25,70 @@ void C_Terrain::OnMove(Vector2D oldPosition,Vector2D newPosition) {
 	map[(int)oldPosition.x][(int)oldPosition.y]->entity = nullptr;
 
 }
+std::vector<C_Case*> C_Terrain::GetPath(Vector2D positionStart, Vector2D positionEnd)
+{
+	std::vector<C_Case*> path;
+	std::queue<Vector2D> queue;
+
+	// Pour garder la trace des cases déjà visitées
+	std::vector<std::vector<bool>> visited(lengthX, std::vector<bool>(lengthY, false));
+
+	// Définir les mouvements possibles (haut, bas, gauche, droite)
+	std::vector<Vector2D> directions = {
+		{0, 1}, {1, 0}, {0, -1}, {-1, 0} // Haut, Droite, Bas, Gauche
+	};
+
+	queue.push(positionStart);
+	visited[positionStart.x][positionStart.y] = true;
+
+	// Pour suivre le chemin
+	std::map<Vector2D, Vector2D> cameFrom;
+
+	while (!queue.empty()) {
+		Vector2D current = queue.front();
+		queue.pop();
+
+		if (current == positionEnd) {
+			break; // On a atteint la destination
+		}
+
+		for (const auto& direction : directions) {
+			Vector2D neighbor = current + direction;
+
+			// Vérifier que le voisin est dans les limites de la carte
+			if (neighbor.x < 0 || neighbor.x >= lengthX ||
+				neighbor.y < 0 || neighbor.y >= lengthY) {
+				continue;
+			}
+
+			C_Case* caseNeighbor = GetCase(neighbor.x, neighbor.y);
+			if (caseNeighbor->caseType == E_CaseType::Wall || visited[neighbor.x][neighbor.y]) {
+				continue; // Ne pas traverser les murs et ne pas revisiter
+			}
+
+			// Marquer comme visité
+			visited[neighbor.x][neighbor.y] = true;
+			queue.push(neighbor);
+			cameFrom[neighbor] = current; // Suivre d'où vient la case
+		}
+	}
+
+	// Reconstruire le chemin
+	Vector2D current = positionEnd;
+	while (current != positionStart) {
+		path.push_back(GetCase(current.x, current.y));
+		if (cameFrom.find(current) == cameFrom.end()) {
+			break; // Pas de chemin trouvé
+		}
+		current = cameFrom[current];
+	}
+
+	std::reverse(path.begin(), path.end()); // Le chemin est reconstruit à l'envers
+	return path;
+}
+
+
+
 void C_Terrain::GenerateMap()
 {
 	C_TerrainLoader terrainLoader;
@@ -59,7 +129,8 @@ void C_Terrain::GenerateMap()
 						C_Player* player = new C_Player();
 						player->Init();
 						tile->AddEntity(player);
-						EntityManager.AddEntity(player);
+						EntityManager.AddPlayer(player);
+						C_Game::Instance.Player = player;
 					}
 				}  
 			}
@@ -72,6 +143,8 @@ void C_Terrain::GenerateMap()
 
 		}
 	}
+	auto t = C_Terrain::GetPath(this->map[1][1]->position, this->map[1][8]->position);
+	
 }
 
 void C_Terrain::DrawTerrain()

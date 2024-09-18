@@ -15,3 +15,7 @@ void C_EntityManager::AddEntity(C_Entity* entity)
 {
     Entities.push_back(entity);
 }
+void C_EntityManager::AddPlayer(C_Entity* entity)
+{
+    Entities.insert(Entities.begin(), entity);
+}

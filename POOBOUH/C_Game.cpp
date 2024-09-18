@@ -3,7 +3,7 @@
 
 C_Game C_Game::Instance;
 
-C_Game::C_Game() : Terrain(26,26) 
+C_Game::C_Game() : Terrain(26,26) , Player(nullptr)
 {
 	C_Game::Instance = *this;
 }

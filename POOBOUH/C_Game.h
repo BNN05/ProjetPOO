@@ -18,6 +18,7 @@ public:
 
 	C_Terrain Terrain;
 	C_InputListener InputListener;
+	C_Entity* Player;
 
 };
 
