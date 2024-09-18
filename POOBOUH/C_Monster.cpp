@@ -15,44 +15,42 @@ void C_Monster::ComputeState()
 {
     if (CanMove())
     {
-        //std::vector<Vector2D> adjacentPositions;
+        std::vector<Vector2D> adjacentPositions;
 
-        //// Ajout des positions des cases adjacentes
-        //adjacentPositions.push_back(Vector2D(position.x, position.y - 1)); // Haut
-        //adjacentPositions.push_back(Vector2D(position.x, position.y + 1)); // Bas
-        //adjacentPositions.push_back(Vector2D(position.x - 1, position.y)); // Gauche
-        //adjacentPositions.push_back(Vector2D(position.x + 1, position.y)); // Droite
+        // Ajout des positions des cases adjacentes
+        adjacentPositions.push_back(Vector2D(position.x, position.y - 1)); // Haut
+        adjacentPositions.push_back(Vector2D(position.x, position.y + 1)); // Bas
+        adjacentPositions.push_back(Vector2D(position.x - 1, position.y)); // Gauche
+        adjacentPositions.push_back(Vector2D(position.x + 1, position.y)); // Droite
 
-        //// Filtrage des cases valides
-        //std::vector<Vector2D> validPositions;
-        //for (const auto& pos : adjacentPositions)
-        //{
-        //    C_Case* adjacentCase = C_Game::Instance.Terrain.GetCase(pos.x, pos.y);
+        // Filtrage des cases valides
+        std::vector<Vector2D> validPositions;
+        for (const auto& pos : adjacentPositions)
+        {
+            C_Case* adjacentCase = C_Game::Instance.Terrain.GetCase(pos.x, pos.y);
 
-        //    // Vérification si la case est de type EmptyCase et qu'elle ne contient pas déjà une entité
-        //    if (adjacentCase != nullptr
-        //        && adjacentCase->caseType == E_CaseType::Empty // Vérifie que c'est une EmptyCase
-        //        && adjacentCase->entity == nullptr) // Vérifie qu'il n'y a pas d'entité sur la case
-        //    {
-        //        validPositions.push_back(pos);  // Ajouter la position valide
-        //    }
-        //}
+            // Vérification si la case est de type EmptyCase et qu'elle ne contient pas déjà une entité
+            if (adjacentCase != nullptr
+                && adjacentCase->caseType == E_CaseType::Empty // Vérifie que c'est une EmptyCase
+                && adjacentCase->entity == nullptr) // Vérifie qu'il n'y a pas d'entité sur la case
+            {
+                validPositions.push_back(pos);  // Ajouter la position valide
+            }
+        }
 
-        //if (!validPositions.empty())
-        //{
-        //    // Sélection aléatoire d'une case valide
-        //    std::random_device rd;
-        //    std::mt19937 gen(rd());
-        //    std::uniform_int_distribution<> dis(0, validPositions.size() - 1);
+        if (!validPositions.empty())
+        {
+            // Sélection aléatoire d'une case valide
+            std::random_device rd;
+            std::mt19937 gen(rd());
+            std::uniform_int_distribution<> dis(0, validPositions.size() - 1);
 
-        //    Vector2D newPosition = validPositions[dis(gen)];
+            Vector2D newPosition = validPositions[dis(gen)];
 
-        //    // Déplacer le monstre vers la nouvelle position
-        //    Move(newPosition);
-        //}
+            // Déplacer le monstre vers la nouvelle position
+            Move(newPosition);
+        }
 
-        auto path = C_Game::Instance.Terrain.GetPath(this->position, C_Game::Instance.Player->position);
-        Move(path[0]->position);
     }
 
 

@@ -27,6 +27,8 @@ public:
 	}
 
 	void Init() override;
+	void ComputeState() override;
+	void OnEnterState() override;
 
 
 	C_Reaper()

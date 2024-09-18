@@ -20,7 +20,7 @@ public:
 	void GenerateEntity();
 
 	C_Case* GetCase(int x, int y);
-
+	
 
 	C_Terrain();
 };
