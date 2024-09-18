@@ -2,6 +2,7 @@
 
 #include "C_Terrain.h"
 #include "Vector2D.h"
+#include "C_InputListener.h"
 
 class C_Game
 {
@@ -16,6 +17,7 @@ public:
 	static C_Game Instance;
 
 	C_Terrain Terrain;
+	C_InputListener InputListener;
 
 };
 
