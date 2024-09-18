@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="C_Case.cpp" />
+    <ClCompile Include="C_Chest.cpp" />
     <ClCompile Include="C_EmptyCase.cpp" />
     <ClCompile Include="C_EnemyStats.cpp" />
     <ClCompile Include="C_Entity.cpp" />
@@ -157,6 +158,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C_Case.h" />
+    <ClInclude Include="C_Chest.h" />
     <ClInclude Include="C_EmptyCase.h" />
     <ClInclude Include="C_EnemyStats.h" />
     <ClInclude Include="C_Entity.h" />

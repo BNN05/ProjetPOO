@@ -13,6 +13,7 @@
 #include <utility> // Pour std::pair
 #include <algorithm> 
 #include <map>
+#include "C_Chest.h"
 
 void C_Terrain::OnMove(Vector2D oldPosition,Vector2D newPosition) {
 	if (map[(int)oldPosition.x][(int)oldPosition.y]->entity == nullptr)
@@ -92,7 +93,7 @@ std::vector<C_Case*> C_Terrain::GetPath(Vector2D positionStart, Vector2D positio
 void C_Terrain::GenerateMap()
 {
 	C_TerrainLoader terrainLoader;
-	auto v = terrainLoader.LoadMap("MapFiles/Level2.csv");	
+	auto v = terrainLoader.LoadMap("MapFiles/level3.csv");	
 	
 	for (int i = 0; i < C_Terrain::lengthX; i++) {
 		for (int j = 0; j < C_Terrain::lengthY; j++) {
@@ -123,6 +124,13 @@ void C_Terrain::GenerateMap()
 						spectre->Init();
 						tile->AddEntity(spectre);
 						EntityManager.AddEntity(spectre);
+					}
+					else if ((v[i][j] == "C"))
+					{
+						C_Chest* chest = new C_Chest();
+						chest->Init();
+						tile->AddEntity(chest);
+						EntityManager.AddEntity(chest);
 					}
 					else if ((v[i][j] == "@"))
 					{
