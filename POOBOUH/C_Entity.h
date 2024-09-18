@@ -40,9 +40,12 @@ public:
 	virtual bool ShouldPlay() {
 		return shouldPlay;
 	}
-	C_Entity(int health = 100, int attackPoints = 10, int movementPoints = 5)
+	C_Entity(int health = 5, int attackPoints = 5, int movementPoints = 5)
 		: health(health), attackPoints(attackPoints), movementPoints(movementPoints), shouldPlay(false)
 	{
+		currentHealth = health;
+		currentAttackPoints = attackPoints;
+		currentMovementPoint = movementPoints;
 	}
 
 	virtual void Init() {};
