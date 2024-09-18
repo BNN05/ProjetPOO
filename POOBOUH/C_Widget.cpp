@@ -3,7 +3,6 @@
 
 void C_Widget::displayStats(C_Entity* entity) const {
 
-    std::cout << "\n" << entity->sprite << " : ";
 
     for (int i = 0; i < entity->currentHealth; ++i) {
         std::cout << u8"❤️";

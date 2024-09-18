@@ -17,10 +17,12 @@ void C_Screen::DrawEnemyScreen()
             enemies.push_back(nullptr);
     }
 
-    for (size_t i = 0; i < 5; i++)
+    for (int i = 5; i >=0; i--)
     {
-        if (enemies.size() <=i)
-            return;
+        if (enemies.size() <= i) {
+            std::cout << "\n";
+            continue;
+        }
         if (enemies[i] == nullptr)
             std::cout << "nullptr" << std::endl; //pour debug
         else
