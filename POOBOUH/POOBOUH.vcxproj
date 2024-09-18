@@ -131,6 +131,7 @@
     <ClCompile Include="C_EmptyCase.cpp" />
     <ClCompile Include="C_EnemyStats.cpp" />
     <ClCompile Include="C_Entity.cpp" />
+    <ClCompile Include="C_EntityManager.cpp" />
     <ClCompile Include="C_Game.cpp" />
     <ClCompile Include="C_Golem.cpp" />
     <ClCompile Include="C_InputListener.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="C_EmptyCase.h" />
     <ClInclude Include="C_EnemyStats.h" />
     <ClInclude Include="C_Entity.h" />
+    <ClInclude Include="C_EntityManager.h" />
     <ClInclude Include="C_Game.h" />
     <ClInclude Include="C_Golem.h" />
     <ClInclude Include="C_InputListener.h" />

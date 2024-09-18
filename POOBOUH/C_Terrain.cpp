@@ -6,6 +6,7 @@
 #include "C_Golem.h"
 #include "C_Spectre.h"
 #include "C_Reaper.h"
+#include "C_Player.h"
 
 void C_Terrain::OnMove(Vector2D oldPosition,Vector2D newPosition) {
 	if (map[(int)oldPosition.x][(int)oldPosition.y]->entity == nullptr)
@@ -28,34 +29,45 @@ void C_Terrain::GenerateMap()
 			C_Case* tile = new C_Case();
 			if (v[i][j] != u8"🟫") { //Carré marron
 				tile->Init(u8"🔳", Vector2D(i, j)); //Carré vide
+				tile->caseType == E_CaseType::Empty;
 				if (v[i][j] != u8"🔳") {//Carré vide
 					if ((v[i][j] == "G"))
 					{
 						C_Golem* golem = new C_Golem();
 						golem->Init();
 						tile->AddEntity(golem);
+						EntityManager.AddEntity(golem);
 					
 					}					
 					else if ((v[i][j] == "F"))
 					{
 						C_Reaper* reaper = new C_Reaper();
 						reaper->Init();
-						tile->entity = reaper;
+						tile->AddEntity(reaper);
+						EntityManager.AddEntity(reaper);
 
 					}
 					else if ((v[i][j] == "S"))
 					{
 						C_Spectre* spectre = new C_Spectre();
 						spectre->Init();
-						tile->entity = spectre;
-
+						tile->AddEntity(spectre);
+						EntityManager.AddEntity(spectre);
+					}
+					else if ((v[i][j] == "@"))
+					{
+						C_Player* player = new C_Player();
+						player->Init();
+						tile->AddEntity(player);
+						EntityManager.AddEntity(player);
 					}
 				}  
-				
-
 			}
-			else
+			else {
 				tile->Init(v[i][j], Vector2D(i, j));
+
+				tile->caseType == E_CaseType::Wall;
+			}
 			this->map[i][j] = tile;
 
 		}
@@ -77,8 +89,7 @@ void C_Terrain::DrawTerrain()
 	}
 }
 
-C_Terrain::C_Terrain() : lengthX(0), lengthY(0), map(nullptr) {
-
+C_Terrain::C_Terrain() : lengthX(0), lengthY(0), map(nullptr),EntityManager() {
 }
 
 C_Terrain::C_Terrain(int x, int y) : lengthX(x), lengthY(y) {

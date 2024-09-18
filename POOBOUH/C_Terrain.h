@@ -3,6 +3,7 @@
 #include "C_Case.h"
 #include "IEventListener.h"
 #include "Vector2D.h"
+#include "C_EntityManager.h"
 
 class C_Terrain :public IEventListener
 {
@@ -11,6 +12,7 @@ public:
 	int lengthX = 15;
 	int lengthY = 15; 
 	C_Case*** map;
+	C_EntityManager EntityManager;
 
 	void GenerateMap();
 	void DrawTerrain();

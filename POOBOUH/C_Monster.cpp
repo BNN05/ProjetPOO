@@ -31,7 +31,7 @@ void C_Monster::ComputeState()
 
             // Vérification si la case est de type EmptyCase et qu'elle ne contient pas déjà une entité
             if (adjacentCase != nullptr
-                && dynamic_cast<C_EmptyCase*>(adjacentCase) // Vérifie que c'est une EmptyCase
+                && adjacentCase->caseType == E_CaseType::Empty // Vérifie que c'est une EmptyCase
                 && adjacentCase->entity == nullptr) // Vérifie qu'il n'y a pas d'entité sur la case
             {
                 validPositions.push_back(pos);  // Ajouter la position valide
@@ -58,6 +58,7 @@ void C_Monster::ComputeState()
 
 void C_Monster::OnExitState()
 {
+    C_Game::Instance.Draw();
 }
 
 void C_Monster::Move(Vector2D newPos)

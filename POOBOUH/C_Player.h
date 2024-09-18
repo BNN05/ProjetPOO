@@ -11,15 +11,12 @@ public:
 	void ComputeState() override;
 	void OnExitState() override;
 
-	bool CanMove() override;
-	bool CanAttack() override;
+	void Init() override;
 
 	void TryMove(E_Direction direction);
 	void TryAttack();
 
 	void Move(Vector2D newPos);
-	void Attack() override;
-	void EndTurn() override;
 
 	int currentMovementPoints;
 

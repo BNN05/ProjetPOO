@@ -26,6 +26,10 @@ void C_Game::StartGame()
 {
 	C_Game::Terrain.GenerateMap(); 
 	Draw();
+	while (true)
+	{
+		C_Game::Terrain.EntityManager.ComputeEntities();
+	}
 	/*getchar();
 	system("cls");
 	C_Game::Terrain.DrawTerrain();*/

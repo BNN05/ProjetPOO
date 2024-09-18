@@ -1,8 +1,17 @@
-#include "C_Player.h"
+﻿#include "C_Player.h"
 #include "C_Game.h"
 
 #include "C_Case.h"
 #include "C_EmptyCase.h"
+
+void C_Player::Init()
+{
+    C_Player::sprite = u8"😍";
+    C_Player::health = 7;
+    C_Player::attackPoints = 3;
+    C_Player::movementPoints = 3;
+    C_Player::shouldPlay = true;
+}
 
 void C_Player::OnEnterState()
 {
@@ -35,7 +44,9 @@ void C_Player::ComputeState()
             TryMove(E_Direction::Right);
             break;
         case E_Key::KeyAttack:
-            TryAttack();
+            C_Player::OnExitState();
+            return;
+            //TryAttack();
             break;
         default:
             return; // No valid key pressed
@@ -58,16 +69,16 @@ void C_Player::TryMove(E_Direction direction)
     switch (direction)
     {
     case E_Direction::Up:
-        newPosition.y -= 1;
+        newPosition.x -= 1;
         break;
     case E_Direction::Down:
-        newPosition.y += 1;
-        break;
-    case E_Direction::Right:
         newPosition.x += 1;
         break;
+    case E_Direction::Right:
+        newPosition.y += 1;
+        break;
     case E_Direction::Left:
-        newPosition.x -= 1;
+        newPosition.y -= 1;
         break;
     default:
         break;
@@ -77,7 +88,7 @@ void C_Player::TryMove(E_Direction direction)
     C_Case* adjacentCase = C_Game::Instance.Terrain.GetCase(newPosition.x, newPosition.y);
 
     if (adjacentCase != nullptr
-        && dynamic_cast<C_EmptyCase*>(adjacentCase) // Check if it's an EmptyCase
+        && adjacentCase->caseType == E_CaseType::Empty // Check if it's an EmptyCase
         && adjacentCase->entity == nullptr) // Check if there's no entity on the case
     {
         // Move the player to the new valid position
