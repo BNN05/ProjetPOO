@@ -1,8 +1,14 @@
 #include "C_Entity.h"
 
+void C_Entity::OnEnterState()
+{
+    currentAttackPoints = attackPoints;
+    currentMovementPoint = movementPoints;
+}
+
 bool C_Entity::CanMove()
 {
-    if (C_Entity::movementPoints > 0)
+    if (C_Entity::currentMovementPoint > 0)
         return true;
     return false;
 }

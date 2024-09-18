@@ -15,7 +15,7 @@ void C_Player::Init()
 
 void C_Player::OnEnterState()
 {
-    currentMovementPoints = movementPoints;
+    C_Entity::OnEnterState();
     C_Player::ComputeState();
 }
 
@@ -93,7 +93,7 @@ void C_Player::TryMove(E_Direction direction)
     {
         // Move the player to the new valid position
         Move(newPosition);
-        currentMovementPoints -= 1;
+        C_Entity::currentMovementPoint -= 1;
     }
 }
 

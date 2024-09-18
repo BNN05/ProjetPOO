@@ -8,6 +8,7 @@
 
 void C_Monster::OnEnterState()
 {
+    C_Entity::OnEnterState();
     C_Monster::ComputeState();
 }
 

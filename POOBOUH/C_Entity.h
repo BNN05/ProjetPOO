@@ -10,11 +10,14 @@ public:
 	Vector2D position;
 	std::string sprite;
 	int health;
-	int currentHealth;
 	int attackPoints;
-	int currentAttackPoints;
 	int movementPoints;
+
 	bool shouldPlay;
+
+	int currentHealth;
+	int currentAttackPoints;
+	int currentMovementPoint;
 
 	virtual std::string GetSprite() {
 		return sprite;
@@ -37,7 +40,7 @@ public:
 	}
 
 	virtual void Init() {};
-	virtual void OnEnterState() {};
+	virtual void OnEnterState();
 	virtual void ComputeState() {};
 	virtual void OnExitState() {};
 
