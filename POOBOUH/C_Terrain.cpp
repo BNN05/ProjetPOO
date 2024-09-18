@@ -29,7 +29,7 @@ void C_Terrain::GenerateMap()
 			C_Case* tile = new C_Case();
 			if (v[i][j] != u8"🟫") { //Carré marron
 				tile->Init(u8"🔳", Vector2D(i, j)); //Carré vide
-				tile->caseType == E_CaseType::Empty;
+				tile->caseType = E_CaseType::Empty;
 				if (v[i][j] != u8"🔳") {//Carré vide
 					if ((v[i][j] == "G"))
 					{
@@ -66,7 +66,7 @@ void C_Terrain::GenerateMap()
 			else {
 				tile->Init(v[i][j], Vector2D(i, j));
 
-				tile->caseType == E_CaseType::Wall;
+				tile->caseType = E_CaseType::Wall;
 			}
 			this->map[i][j] = tile;
 
@@ -77,7 +77,7 @@ void C_Terrain::GenerateMap()
 void C_Terrain::DrawTerrain()
 {
 
-	system("cls");
+	//system("cls");
 	for (int i = 0; i < C_Terrain::lengthX; i++) {
 		for (int j = 0; j < C_Terrain::lengthY; j++) {
 			if (C_Terrain::map[i][j]->entity != nullptr)
