@@ -1,11 +1,11 @@
 #pragma once
 enum E_Key
 {
-	OtherKey,
-	Up,
-	Right,
-	Down,
-	Left,
-	Attack
+	KeyOther,
+	KeyUp,
+	KeyRight,
+	KeyDown,
+	KeyLeft,
+	KeyAttack
 };
 
