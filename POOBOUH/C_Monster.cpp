@@ -6,6 +6,11 @@
 #include "C_Case.h"
 #include "C_EmptyCase.h"
 
+void C_Monster::OnEnterState()
+{
+    C_Monster::ComputeState();
+}
+
 void C_Monster::ComputeState()
 {
     if (CanMove())
@@ -46,6 +51,13 @@ void C_Monster::ComputeState()
             Move(newPosition);
         }
     }
+
+
+    C_Monster::OnExitState();
+}
+
+void C_Monster::OnExitState()
+{
 }
 
 void C_Monster::Move(Vector2D newPos)

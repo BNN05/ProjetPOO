@@ -13,7 +13,24 @@ public:
 	int attackPoints;
 	int movementPoints;
 	bool shouldPlay;
-	 
+
+	virtual std::string GetSprite() {
+		return sprite;
+	}
+	virtual int GetHealth() {
+		return health;
+	}
+	virtual int GetAttackPoint() {
+		return attackPoints;
+	}
+	virtual int GetMovementPoint() {
+		return movementPoints;
+	}	
+	virtual bool ShouldPlay() {
+		return shouldPlay;
+	}
+
+
 
 	virtual void OnEnterState();
 	virtual void ComputeState();
