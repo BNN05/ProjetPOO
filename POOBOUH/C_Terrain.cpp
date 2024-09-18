@@ -92,7 +92,7 @@ std::vector<C_Case*> C_Terrain::GetPath(Vector2D positionStart, Vector2D positio
 void C_Terrain::GenerateMap()
 {
 	C_TerrainLoader terrainLoader;
-	auto v = terrainLoader.LoadMap("MapFiles/Level1.csv");	
+	auto v = terrainLoader.LoadMap("MapFiles/Level2.csv");	
 	
 	for (int i = 0; i < C_Terrain::lengthX; i++) {
 		for (int j = 0; j < C_Terrain::lengthY; j++) {
