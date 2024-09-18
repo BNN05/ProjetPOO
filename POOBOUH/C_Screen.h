@@ -5,6 +5,9 @@
 class C_Screen
 {
 public:
-	std::vector<C_Widget> Widgets;
+	
+	C_Widget* widgets[5];
+
+	void DrawScreen();
 };
 

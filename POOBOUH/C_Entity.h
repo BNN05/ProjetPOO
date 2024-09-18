@@ -10,7 +10,9 @@ public:
 	Vector2D position;
 	std::string sprite;
 	int health;
+	int currentHealth;
 	int attackPoints;
+	int currentAttackPoints;
 	int movementPoints;
 	bool shouldPlay;
 
