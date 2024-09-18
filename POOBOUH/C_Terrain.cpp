@@ -98,9 +98,9 @@ void C_Terrain::GenerateMap()
 		for (int j = 0; j < C_Terrain::lengthY; j++) {
 			C_Case* tile = new C_Case();
 			if (v[i][j] != u8"🟫") { //Carré marron
-				tile->Init(u8"🔳", Vector2D(i, j)); //Carré vide
+				tile->Init(u8"ㅤ", Vector2D(i, j)); //Carré invisible
 				tile->caseType = E_CaseType::Empty;
-				if (v[i][j] != u8"🔳") {//Carré vide
+				if (v[i][j] != u8"ㅤ") {//Carré invisible
 					if ((v[i][j] == "G"))
 					{
 						C_Golem* golem = new C_Golem();

@@ -6,14 +6,12 @@
 
 void C_Player::Init()
 {
-    C_Player::sprite = u8"😍";
+    C_Player::sprite = u8"😮";
     C_Player::health = 7;
     C_Player::attackPoints = 3;
     C_Player::movementPoints = 3;
     C_Player::shouldPlay = true;
 
-    C_Player::currentHealth = health;
-    C_Player::currentAttackPoints = attackPoints;
 
 }
 

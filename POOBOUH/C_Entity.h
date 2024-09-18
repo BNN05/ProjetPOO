@@ -25,6 +25,12 @@ public:
 	virtual int GetHealth() {
 		return health;
 	}
+	virtual int GetCurrentHealth() {
+		return currentHealth;
+	}
+	virtual int GetCurrentAttackPoints() {
+		return currentAttackPoints;
+	}
 	virtual int GetAttackPoint() {
 		return attackPoints;
 	}

@@ -14,6 +14,9 @@ public:
 	void Draw();
 	void StartGame(); //Init
 	void ResetGame();
+	void ClearConsole();
+
+	static bool SetConsoleSize(int cols, int rows);
 
 	static C_Game Instance;
 
