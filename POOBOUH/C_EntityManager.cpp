@@ -29,14 +29,34 @@ void C_EntityManager::AddPlayer(C_Entity* entity)
 
 void C_EntityManager::CheckForEntityAlive()
 {
+    for (int i = C_EntityManager::Entities.size()-1; i >= 0; i--)
+    {
+        int ttt = C_EntityManager::Entities[i]->GetCurrentHealth();
+        if ( ttt<= 0) {
+            C_EntityManager::Entities[i]->OnDeath();
+            DeleteEntity(C_EntityManager::Entities[i]);
+        }
+    }
+     C_Game::Instance->Draw();
+    //for (auto i : C_EntityManager::Entities)
+    //{
+    //    if (i->GetCurrentHealth() <= 0) {
+    //        i->OnDeath();
+    //        DeleteEntity(i);
+    //        C_Game::Instance->Draw();
+    //    }
+
+    //}
+}
+
+void C_EntityManager::HitAllEntity(int dmg)
+{
     for (auto i : C_EntityManager::Entities)
     {
-        if (i->GetCurrentHealth() <= 0) {
-            DeleteEntity(i);
-            C_Game::Instance->Draw();
-        }
-
+        if (i->shouldTakeDmgAll)
+            i->OnTakeDamage(dmg);
     }
+    CheckForEntityAlive();
 }
 
 

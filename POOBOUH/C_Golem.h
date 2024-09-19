@@ -29,6 +29,9 @@ public:
 	void ComputeState() override;
 	void OnEnterState() override;
 
+	 void OnTakeDamage(int dmg) override ;
+	 void OnDeath() override ;
+
 	bool CanMove() override;
 
 

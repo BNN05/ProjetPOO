@@ -8,10 +8,12 @@ void C_Player::Init()
 {
     C_Player::sprite = u8"😮";
     C_Player::health = 7;
+    C_Player::currentHealth = C_Player::health;
     C_Player::attackPoints = 3;
     C_Player::movementPoints = 3;
     C_Player::shouldPlay = true;
     C_Player::attackMultiplier = 1;
+    shouldTakeDmgAll = false;
 }
 
 void C_Player::OnEnterState()
@@ -68,6 +70,11 @@ void C_Player::OnExitState()
 {
 }
 
+int C_Player::GetAttackMultiplier()
+{
+    return attackMultiplier;
+}
+
 
 void C_Player::TryMove(E_Direction direction)
 {
@@ -122,8 +129,15 @@ void C_Player::TryAttack()
 
 void C_Player::Attack(C_Entity* entity)
 {
-    entity->currentHealth -= 1 * attackMultiplier;
+    entity->OnTakeDamage(1 * attackMultiplier);
     currentAttackPoints -= 1;
+}
+
+void C_Player::OnTakeDamage(int dmg)
+{
+
+        currentHealth -= dmg;
+
 }
 
 

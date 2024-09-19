@@ -77,3 +77,9 @@ void C_Spectre::OnExitState()
 {
     C_Game::Instance->Draw();
 }
+
+void C_Spectre::OnDeath()
+{
+    //Heal le joueur
+    C_Game::Instance->Player->SetCurrentHealth(C_Game::Instance->Player->GetHealth());
+}

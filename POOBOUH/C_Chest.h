@@ -30,6 +30,8 @@ public:
 	void ComputeState() override;
 	void OnEnterState() override;
 
+	void OnTakeDamage(int dmg) override;
+
 
 
 	C_Chest()
@@ -38,5 +40,6 @@ public:
 		movementPoints(5),
 		shouldPlay(false)
 	{
+		shouldTakeDmgAll = false;
 	}
 };

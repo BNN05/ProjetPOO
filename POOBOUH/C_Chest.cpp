@@ -16,3 +16,7 @@ void C_Chest::ComputeState()
 void C_Chest::OnEnterState()
 {
 }
+
+void C_Chest::OnTakeDamage(int dmg)
+{
+}

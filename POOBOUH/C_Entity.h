@@ -12,8 +12,11 @@ public:
 	int health;
 	int attackPoints;
 	int movementPoints;
+	int attackMultiplier;
 
 	bool shouldPlay;
+	bool shouldTakeDmgAll = true;
+	bool isAlreadyDead = false;
 
 	int currentHealth;
 	int currentAttackPoints;
@@ -28,6 +31,9 @@ public:
 	virtual int GetCurrentHealth() {
 		return currentHealth;
 	}
+	virtual void SetCurrentHealth(int health) {
+		currentHealth = health;
+	}
 	virtual int GetCurrentAttackPoints() {
 		return currentAttackPoints;
 	}
@@ -36,6 +42,12 @@ public:
 	}
 	virtual int GetAttackPoint() {
 		return attackPoints;
+	}
+
+	virtual void SetAttackMultiplier(int aM) { attackMultiplier = aM; }
+
+	virtual int GetAttackMultiplier() {
+		return 1;
 	}
 	virtual int GetMovementPoint() {
 		return movementPoints;

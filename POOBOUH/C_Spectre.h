@@ -45,6 +45,7 @@ public:
 	bool CanMove() override;
 
 	void OnExitState() override;
+	void OnDeath() override;
 
 
 	C_Spectre()

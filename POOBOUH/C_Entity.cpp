@@ -4,7 +4,7 @@ void C_Entity::OnEnterState()
 {
     currentAttackPoints = attackPoints;
     currentMovementPoint = movementPoints;
-    currentHealth = health;
+    //currentHealth = health;
 }
 
 bool C_Entity::CanMove()

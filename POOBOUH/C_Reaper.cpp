@@ -11,13 +11,37 @@ void C_Reaper::Init()
     C_Reaper::movementPoints = 3;
     C_Reaper::shouldPlay = true;
     currentHealth = C_Reaper::health;
+    shouldTakeDmgAll = false;
 }
 
 void C_Reaper::ComputeState()
 {
-
-    auto path = C_Game::Instance->Terrain.GetPath(this->position, C_Game::Instance->Player->position);
-    Move(path[0]->position);
+    while (CanMove())
+    {
+        if (CanAttack())
+        {
+            auto potentialCase = C_Game::Instance->Terrain.GetAdjacentCase(position);
+            for (auto e : potentialCase)
+            {
+                if (e->entity != nullptr && e->entity == C_Game::Instance->Player) {
+                    e->entity->OnTakeDamage(1 );
+                    C_Game::Instance->Terrain.ComputeEntity();
+                    C_Entity::attackPoints--;
+                    return;
+                }
+            }
+        }
+        auto path = C_Game::Instance->Terrain.GetPath(this->position, C_Game::Instance->Player->position);
+        Move(path[0]->position);
+        C_Reaper::currentMovementPoint--;
+    }
+}
+void C_Reaper::OnDeath()
+{
+    if (isAlreadyDead)
+        return;
+    isAlreadyDead = true;
+    C_Game::Instance->Terrain.EntityManager.HitAllEntity(2);
 }
 
 void C_Reaper::OnEnterState()

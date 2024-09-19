@@ -29,7 +29,7 @@ public:
 	void Init() override;
 	void ComputeState() override;
 	void OnEnterState() override;
-
+	void OnDeath() override;
 	bool CanMove() override;
 
 
@@ -39,5 +39,6 @@ public:
 		movementPoints(5),
 		shouldPlay(false)
 	{
+		shouldTakeDmgAll = false;
 	}
 };

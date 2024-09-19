@@ -10,11 +10,13 @@ public:
 	void OnEnterState() override;
 	void ComputeState() override;
 	void OnExitState() override;
+	int GetAttackMultiplier() override;
 
 	void Init() override;
 
 	void TryMove(E_Direction direction);
 	void TryAttack();
+	void OnTakeDamage(int dmg) override;
 
 	void Attack(C_Entity* entity);
 
@@ -22,7 +24,6 @@ public:
 	void Move(Vector2D newPos);
 
 	int currentMovementPoints;
-	int attackMultiplier;
 
 };
 

@@ -13,6 +13,8 @@ public:
 	void AddPlayer(C_Entity* entity);
 	void CheckForEntityAlive();
 
+	void HitAllEntity(int dmg);
+
 	C_EntityManager() = default;
 };
 
