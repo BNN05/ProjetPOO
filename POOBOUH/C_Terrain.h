@@ -5,16 +5,18 @@
 #include "Vector2D.h"
 #include "C_EntityManager.h"
 
-class C_Terrain :public IEventListener
+class C_Terrain : public IEventListener
 {
 public:
 	void OnMove(Vector2D oldPosition,Vector2D newPosition) override;
 	int lengthX = 15;
 	int lengthY = 15; 
+	int currentLevel = 1;
 	C_Case*** map;
 	C_EntityManager EntityManager;
 	std::vector<C_Case*> GetPath(Vector2D positionStart, Vector2D positionEnd);
-	void GenerateMap();
+	void LoadNextMap();
+	void GenerateMap(const std::string& mapFilePath);
 	void DrawTerrain();
 	C_Terrain(int x, int y);
 	void GenerateEntity();

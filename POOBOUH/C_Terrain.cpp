@@ -14,6 +14,7 @@
 #include <algorithm> 
 #include <map>
 #include "C_Chest.h"
+#include <filesystem>
 
 void C_Terrain::OnMove(Vector2D oldPosition,Vector2D newPosition) {
 	if (map[(int)oldPosition.x][(int)oldPosition.y]->entity == nullptr)
@@ -88,12 +89,23 @@ std::vector<C_Case*> C_Terrain::GetPath(Vector2D positionStart, Vector2D positio
 	return path;
 }
 
+void C_Terrain::LoadNextMap()
+{
+	if (currentLevel < 4)
+	{
+		GenerateMap("MapFiles/level" + std::to_string(++currentLevel) + ".csv");
+	}
+		
+}
 
 
-void C_Terrain::GenerateMap()
+
+
+
+void C_Terrain::GenerateMap(const std::string& mapFilePath)
 {
 	C_TerrainLoader terrainLoader;
-	auto v = terrainLoader.LoadMap("MapFiles/level3.csv");	
+	auto v = terrainLoader.LoadMap(mapFilePath);
 	
 	for (int i = 0; i < C_Terrain::lengthX; i++) {
 		for (int j = 0; j < C_Terrain::lengthY; j++) {
@@ -170,7 +182,9 @@ void C_Terrain::DrawTerrain()
 	}
 }
 
-C_Terrain::C_Terrain() : lengthX(0), lengthY(0), map(nullptr),EntityManager() {
+C_Terrain::C_Terrain() : lengthX(0), lengthY(0), map(nullptr),EntityManager() 
+{
+	
 }
 
 C_Terrain::C_Terrain(int x, int y) : lengthX(x), lengthY(y) {

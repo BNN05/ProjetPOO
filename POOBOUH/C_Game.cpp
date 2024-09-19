@@ -31,7 +31,7 @@ void C_Game::Draw()
 void C_Game::StartGame()
 {
     
-	C_Game::Terrain.GenerateMap(); 
+	C_Game::Terrain.GenerateMap("MapFiles/level1.csv");
 	Draw();
 	while (true)
 	{
