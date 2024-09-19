@@ -11,8 +11,7 @@ void C_Player::Init()
     C_Player::attackPoints = 3;
     C_Player::movementPoints = 3;
     C_Player::shouldPlay = true;
-
-
+    C_Player::attackMultiplier = 1;
 }
 
 void C_Player::OnEnterState()
@@ -25,6 +24,7 @@ void C_Player::OnEnterState()
 void C_Player::ComputeState()
 {
     bool skipTurn = false;
+    C_Game::Instance->Draw();
 
     while (CanMove() && CanAttack())
     {
@@ -122,9 +122,11 @@ void C_Player::TryAttack()
 
 void C_Player::Attack(C_Entity* entity)
 {
-    entity->currentHealth -= 1;
+    entity->currentHealth -= 1 * attackMultiplier;
     currentAttackPoints -= 1;
 }
+
+
 
 void C_Player::Move(Vector2D newPos)
 {

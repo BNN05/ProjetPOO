@@ -18,9 +18,11 @@ public:
 
 	void Attack(C_Entity* entity);
 
+
 	void Move(Vector2D newPos);
 
 	int currentMovementPoints;
+	int attackMultiplier;
 
 };
 
