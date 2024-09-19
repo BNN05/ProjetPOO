@@ -25,7 +25,11 @@ public:
 		return shouldPlay;
 	}
 
-	void Init() override;
+	void Init() override;	
+	void ComputeState() override;
+	void OnEnterState() override;
+
+	bool CanMove() override;
 
 
 	C_Golem()

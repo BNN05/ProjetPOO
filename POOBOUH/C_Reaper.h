@@ -30,6 +30,8 @@ public:
 	void ComputeState() override;
 	void OnEnterState() override;
 
+	bool CanMove() override;
+
 
 	C_Reaper()
 		: C_Monster(100, 10), // Appel du constructeur de C_Monster

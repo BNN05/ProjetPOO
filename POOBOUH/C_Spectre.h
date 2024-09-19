@@ -26,7 +26,25 @@ public:
 		return shouldPlay;
 	}
 
+	 int GetCurrentHealth() override{
+		return currentHealth;
+	}
+	 int GetCurrentAttackPoints()override {
+		 return currentAttackPoints;
+	 }	 
+	 int GetCurrentMovementPoints()override {
+		 return currentMovementPoint;
+	 }
+
 	void Init() override;
+
+	void OnEnterState()override;
+
+	void ComputeState()override;
+
+	bool CanMove() override;
+
+	void OnExitState() override;
 
 
 	C_Spectre()

@@ -31,6 +31,9 @@ public:
 	virtual int GetCurrentAttackPoints() {
 		return currentAttackPoints;
 	}
+	virtual int GetCurrentMovementPoints() {
+		return currentMovementPoint;
+	}
 	virtual int GetAttackPoint() {
 		return attackPoints;
 	}

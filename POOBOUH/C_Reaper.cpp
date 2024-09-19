@@ -10,6 +10,7 @@ void C_Reaper::Init()
     C_Reaper::attackPoints = 2;
     C_Reaper::movementPoints = 3;
     C_Reaper::shouldPlay = true;
+    currentHealth = C_Reaper::health;
 }
 
 void C_Reaper::ComputeState()
@@ -21,6 +22,16 @@ void C_Reaper::ComputeState()
 
 void C_Reaper::OnEnterState()
 {
+    C_Reaper::currentAttackPoints = attackPoints;
+    C_Reaper::currentMovementPoint = movementPoints;
     C_Reaper::ComputeState();
+
+    C_Reaper::ComputeState();
+}
+bool C_Reaper::CanMove()
+{
+    if (C_Reaper::currentMovementPoint > 0)
+        return true;
+    return false;
 }
 
