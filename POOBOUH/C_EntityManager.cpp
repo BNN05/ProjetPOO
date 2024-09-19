@@ -9,7 +9,7 @@ void C_EntityManager::ComputeEntities()
         i->OnEnterState(); 
 
     }
-    _getch();
+    //_getch();
 }
 
 void C_EntityManager::AddEntity(C_Entity* entity)
@@ -24,7 +24,7 @@ void C_EntityManager::DeleteEntity(C_Entity* entity)
 }
 void C_EntityManager::AddPlayer(C_Entity* entity)
 {
-    Entities.insert(Entities.begin(), entity);
+    Entities.insert(Entities.end(), entity);
 }
 
 void C_EntityManager::CheckForEntityAlive()
