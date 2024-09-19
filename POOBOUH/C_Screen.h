@@ -6,7 +6,7 @@ class C_Screen
 {
 public:
 	
-	C_Widget* enemyWidgets[5];
+	C_Widget* enemyWidgets[3];
 	C_Widget* playerWidget;
 
 	void DrawEnemyScreen();

@@ -1,4 +1,4 @@
-#include "C_Screen.h"
+﻿#include "C_Screen.h"
 #include "C_Widget.h"
 #include "C_Player.h"
 #include "C_Game.h"
@@ -17,7 +17,7 @@ void C_Screen::DrawEnemyScreen()
             enemies.push_back(nullptr);
     }
 
-    for (int i = 5; i >=0; i--)
+    for (int i = 3; i >=0; i--)
     {
         if (enemies.size() <= i) {
             std::cout << "\n";
@@ -33,6 +33,7 @@ void C_Screen::DrawEnemyScreen()
 void C_Screen::DrawPlayerScreen()
 {
     playerWidget->displayStats(C_Game::Instance->Player);
+    std::cout << u8"𝒜 𝓉𝓉𝒶𝒸𝓀 (𝘚𝘱𝘢𝘤𝘦𝘣𝘢𝘳) " << "| " << u8"𝒮𝓀𝒾𝓅 𝒯𝓊𝓇𝓃 (𝘌𝘯𝘵𝘦𝘳) " << std::endl;
 }
 
 

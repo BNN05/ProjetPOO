@@ -31,6 +31,8 @@ void C_Player::ComputeState()
         if (skipTurn)
             break;
 
+        bool shouldDraw = true;
+
         switch (C_Game::Instance->InputListener.GetKey())
         {
         case E_Key::KeyUp:
@@ -48,10 +50,15 @@ void C_Player::ComputeState()
         case E_Key::KeyAttack:
             TryAttack();
             break;
+        case E_Key::KeySkipTurn:
+            OnExitState();
+            return;
         default:
-            return; // No valid key pressed
+            shouldDraw = false;
+            break; // No valid key pressed
         }
-        C_Game::Instance->Draw();
+        if (shouldDraw)
+            C_Game::Instance->Draw();
     }
 
     C_Player::OnExitState();

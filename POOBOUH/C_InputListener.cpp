@@ -32,6 +32,9 @@ E_Key C_InputListener::GetKey()
     case KEY_ATTACK:
         //cout << "Attack" << endl;
         return E_Key::KeyAttack;
+    case KEY_SKIPTURN:
+        //cout << "Skip Turn" << endl;
+        return E_Key::KeySkipTurn;
     default:
         //cout << "Key not bind " << endl;
         return E_Key::KeyOther;

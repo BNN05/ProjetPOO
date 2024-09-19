@@ -6,6 +6,7 @@ enum E_Key
 	KeyRight,
 	KeyDown,
 	KeyLeft,
-	KeyAttack
+	KeyAttack,
+	KeySkipTurn
 };
 
