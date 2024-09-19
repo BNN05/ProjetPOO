@@ -18,6 +18,9 @@ public:
 	void DrawTerrain();
 	C_Terrain(int x, int y);
 	void GenerateEntity();
+	void ComputeEntity();
+
+	C_Case* GetCaseByEntity(C_Entity* entity);
 
 	C_Case* GetCase(int x, int y);
 	std::vector<C_Case*> GetAdjacentCase(Vector2D pos);

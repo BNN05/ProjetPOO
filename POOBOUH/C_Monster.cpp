@@ -28,7 +28,7 @@ void C_Monster::ComputeState()
         std::vector<Vector2D> validPositions;
         for (const auto& pos : adjacentPositions)
         {
-            C_Case* adjacentCase = C_Game::Instance.Terrain.GetCase(pos.x, pos.y);
+            C_Case* adjacentCase = C_Game::Instance->Terrain.GetCase(pos.x, pos.y);
 
             // Vérification si la case est de type EmptyCase et qu'elle ne contient pas déjà une entité
             if (adjacentCase != nullptr
@@ -60,11 +60,11 @@ void C_Monster::ComputeState()
 
 void C_Monster::OnExitState()
 {
-    C_Game::Instance.Draw();
+    C_Game::Instance->Draw();
 }
 
 void C_Monster::Move(Vector2D newPos)
 {
-    C_Game::Instance.Terrain.OnMove(position, newPos);
+    C_Game::Instance->Terrain.OnMove(position, newPos);
 }
 

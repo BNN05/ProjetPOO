@@ -31,7 +31,7 @@ void C_Player::ComputeState()
         if (skipTurn)
             break;
 
-        switch (C_Game::Instance.InputListener.GetKey())
+        switch (C_Game::Instance->InputListener.GetKey())
         {
         case E_Key::KeyUp:
             TryMove(E_Direction::Up);
@@ -51,7 +51,7 @@ void C_Player::ComputeState()
         default:
             return; // No valid key pressed
         }
-        C_Game::Instance.Draw();
+        C_Game::Instance->Draw();
     }
 
     C_Player::OnExitState();
@@ -85,7 +85,7 @@ void C_Player::TryMove(E_Direction direction)
     }
 
     // Check if the new position is valid
-    C_Case* adjacentCase = C_Game::Instance.Terrain.GetCase(newPosition.x, newPosition.y);
+    C_Case* adjacentCase = C_Game::Instance->Terrain.GetCase(newPosition.x, newPosition.y);
 
     if (adjacentCase != nullptr
         && adjacentCase->caseType == E_CaseType::Empty // Check if it's an EmptyCase
@@ -101,12 +101,13 @@ void C_Player::TryAttack()
 {
     if (currentAttackPoints > 0)
     {
-        auto potentialCase = C_Game::Instance.Terrain.GetAdjacentCase(C_Game::Instance.Player->position);
+        auto potentialCase = C_Game::Instance->Terrain.GetAdjacentCase(C_Game::Instance->Player->position);
 
         for (auto i : potentialCase)
         {
             if (i->entity != nullptr) {
                 Attack(i->entity);
+                C_Game::Instance->Terrain.ComputeEntity();
             }
         }
     }
@@ -120,5 +121,5 @@ void C_Player::Attack(C_Entity* entity)
 
 void C_Player::Move(Vector2D newPos)
 {
-    C_Game::Instance.Terrain.OnMove(position, newPos);
+    C_Game::Instance->Terrain.OnMove(position, newPos);
 }

@@ -18,7 +18,7 @@ public:
 
 	static bool SetConsoleSize(int cols, int rows);
 
-	static C_Game Instance;
+	static C_Game* Instance;
 
 	C_Terrain Terrain;
 	C_Screen Screen;

@@ -138,7 +138,7 @@ void C_Terrain::GenerateMap()
 						player->Init();
 						tile->AddEntity(player);
 						EntityManager.AddPlayer(player);
-						C_Game::Instance.Player = player;
+						C_Game::Instance->Player = player;
 					}
 				}  
 			}
@@ -184,6 +184,21 @@ C_Terrain::C_Terrain(int x, int y) : lengthX(x), lengthY(y) {
     }
 }
 
+void C_Terrain::ComputeEntity()
+{
+	EntityManager.CheckForEntityAlive();
+}
+
+C_Case* C_Terrain::GetCaseByEntity(C_Entity* entity)
+{
+	for (int i = 0; i < C_Terrain::lengthX; i++) {
+		for (int j = 0; j < C_Terrain::lengthY; j++) {
+			if (C_Terrain::map[i][j]->entity == entity)
+				return C_Terrain::map[i][j];
+		}
+	}
+}
+
 C_Case* C_Terrain::GetCase(int x, int y)
 {
 	if (x >= 0 && x < lengthX && y >= 0 && y < lengthY)
@@ -206,7 +221,7 @@ std::vector<C_Case*> C_Terrain::GetAdjacentCase(Vector2D pos)
 	std::vector<C_Case*> validPositions;
 	for (const auto& pos : adjacentPositions)
 	{
-		C_Case* adjacentCase = C_Game::Instance.Terrain.GetCase(pos.x, pos.y);
+		C_Case* adjacentCase = C_Game::Instance->Terrain.GetCase(pos.x, pos.y);
 
 		if (adjacentCase != nullptr
 			&& adjacentCase->entity != nullptr) // Vérifie qu'il n'y a pas d'entité sur la case

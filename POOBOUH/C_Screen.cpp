@@ -6,7 +6,7 @@
 
 void C_Screen::DrawEnemyScreen()
 {
-    auto potentialCase = C_Game::Instance.Terrain.GetAdjacentCase(C_Game::Instance.Player->position);
+    auto potentialCase = C_Game::Instance->Terrain.GetAdjacentCase(C_Game::Instance->Player->position);
     vector<C_Entity*> enemies{ };
     for (auto i : potentialCase)
     {
@@ -32,7 +32,7 @@ void C_Screen::DrawEnemyScreen()
 
 void C_Screen::DrawPlayerScreen()
 {
-    playerWidget->displayStats(C_Game::Instance.Player);
+    playerWidget->displayStats(C_Game::Instance->Player);
 }
 
 

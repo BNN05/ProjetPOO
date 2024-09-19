@@ -36,7 +36,7 @@ void C_Spectre::ComputeState()
         std::vector<Vector2D> validPositions;
         for (const auto& pos : adjacentPositions)
         {
-            C_Case* adjacentCase = C_Game::Instance.Terrain.GetCase(pos.x, pos.y);
+            C_Case* adjacentCase = C_Game::Instance->Terrain.GetCase(pos.x, pos.y);
 
             // Vérification si la case est de type EmptyCase et qu'elle ne contient pas déjà une entité
             if (adjacentCase != nullptr
@@ -75,5 +75,5 @@ bool C_Spectre::CanMove()
 
 void C_Spectre::OnExitState()
 {
-    C_Game::Instance.Draw();
+    C_Game::Instance->Draw();
 }

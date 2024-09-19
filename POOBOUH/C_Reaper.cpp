@@ -16,7 +16,7 @@ void C_Reaper::Init()
 void C_Reaper::ComputeState()
 {
 
-    auto path = C_Game::Instance.Terrain.GetPath(this->position, C_Game::Instance.Player->position);
+    auto path = C_Game::Instance->Terrain.GetPath(this->position, C_Game::Instance->Player->position);
     Move(path[0]->position);
 }
 
