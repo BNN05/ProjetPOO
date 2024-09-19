@@ -56,6 +56,9 @@ public:
 	virtual void ComputeState() {};
 	virtual void OnExitState() {};
 
+	virtual void OnTakeDamage(int dmg) {};
+	virtual void OnDeath() {};
+
 	virtual bool CanMove();
 	virtual bool CanAttack();
 
