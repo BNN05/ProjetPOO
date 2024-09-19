@@ -8,7 +8,7 @@
 
 void C_Player::Init()
 {
-    C_Player::sprite = "P";
+    C_Player::sprite = u8"😮";
     C_Player::health = 7;
     C_Player::currentHealth = C_Player::health;
     C_Player::attackPoints = 3;
