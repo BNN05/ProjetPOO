@@ -22,6 +22,14 @@ void C_EntityManager::DeleteEntity(C_Entity* entity)
     Entities.erase(std::remove(Entities.begin(), Entities.end(), entity), Entities.end());
     delete entity;
 }
+void C_EntityManager::RemoveAllEntity()
+{
+    for (int i = C_EntityManager::Entities.size() - 1; i >= 0; i--)
+    {
+            DeleteEntity(C_EntityManager::Entities[i]);
+        
+    }
+}
 void C_EntityManager::AddPlayer(C_Entity* entity)
 {
     Entities.insert(Entities.end(), entity);
