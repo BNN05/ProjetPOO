@@ -9,7 +9,7 @@ using namespace std;
 #define KEY_LEFT  75
 #define KEY_RIGHT 77
 #define KEY_DOWN  80
-#define KEY_ATTACK 97  //Spacebar: 32?
+#define KEY_ATTACK 32 //a=97  //Spacebar: 32?
 
 class C_InputListener
 {

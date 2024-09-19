@@ -16,6 +16,8 @@ public:
 	void TryMove(E_Direction direction);
 	void TryAttack();
 
+	void Attack(C_Entity* entity);
+
 	void Move(Vector2D newPos);
 
 	int currentMovementPoints;

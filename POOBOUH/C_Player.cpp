@@ -46,9 +46,7 @@ void C_Player::ComputeState()
             TryMove(E_Direction::Right);
             break;
         case E_Key::KeyAttack:
-            C_Player::OnExitState();
-            return;
-            //TryAttack();
+            TryAttack();
             break;
         default:
             return; // No valid key pressed
@@ -101,6 +99,23 @@ void C_Player::TryMove(E_Direction direction)
 
 void C_Player::TryAttack()
 {
+    if (currentAttackPoints > 0)
+    {
+        auto potentialCase = C_Game::Instance.Terrain.GetAdjacentCase(C_Game::Instance.Player->position);
+
+        for (auto i : potentialCase)
+        {
+            if (i->entity != nullptr) {
+                Attack(i->entity);
+            }
+        }
+    }
+}
+
+void C_Player::Attack(C_Entity* entity)
+{
+    entity->currentHealth -= 1;
+    currentAttackPoints -= 1;
 }
 
 void C_Player::Move(Vector2D newPos)
