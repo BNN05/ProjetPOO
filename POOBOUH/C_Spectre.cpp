@@ -2,7 +2,8 @@
 #include "C_Case.h"
 #include <random>
 #include "C_Game.h"
-
+#include <chrono>
+#include <thread>
 void C_Spectre::Init()
 {
     C_Spectre::sprite = u8"👻";
@@ -58,6 +59,7 @@ void C_Spectre::ComputeState()
 
             // Déplacer le monstre vers la nouvelle position
             Move(newPosition);
+            std::this_thread::sleep_for(std::chrono::milliseconds(1));
         }
 
     }

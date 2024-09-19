@@ -2,6 +2,8 @@
 #include "C_Case.h"
 #include <random>
 #include "C_Game.h"
+#include <chrono>
+#include <thread>
 
 
 
@@ -70,6 +72,8 @@ void C_Golem::ComputeState()
                 Move(newPosition);
 
                 C_Golem::currentMovementPoint--;
+
+                std::this_thread::sleep_for(std::chrono::milliseconds(1));
             }
 
         }

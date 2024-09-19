@@ -1,5 +1,7 @@
 ﻿#include "C_Reaper.h"
 #include "C_Game.h"
+#include <chrono>
+#include <thread>
 
 
 
@@ -33,6 +35,7 @@ void C_Reaper::ComputeState()
         }
         auto path = C_Game::Instance->Terrain.GetPath(this->position, C_Game::Instance->Player->position);
         Move(path[0]->position);
+        std::this_thread::sleep_for(std::chrono::milliseconds(1));
         C_Reaper::currentMovementPoint--;
     }
 }
