@@ -33,9 +33,9 @@ void C_TerrainLoader::parseLineInitial(const string& line, vector<string>& row)
     while (getline(ss, cell, ','))
     {
         if (cell == "x")
-            row.push_back(u8"🟫");
+            row.push_back("W");
         else if (cell.empty())
-            row.push_back(u8"ㅤ"); // Replace empty cells with invisible emoji
+            row.push_back(" "); // Replace empty cells with invisible emoji
         else
             row.push_back(cell); // Replace other characters
     }

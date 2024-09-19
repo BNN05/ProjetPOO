@@ -17,6 +17,7 @@ public:
 	void TryMove(E_Direction direction);
 	void TryAttack();
 	void OnTakeDamage(int dmg) override;
+	void OnDeath() override;
 
 	void Attack(C_Entity* entity);
 

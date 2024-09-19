@@ -17,6 +17,8 @@ public:
 
 	void HitAllEntity(int dmg);
 
+	bool shouldStopProcessEntity = false;
+
 	C_EntityManager() = default;
 };
 

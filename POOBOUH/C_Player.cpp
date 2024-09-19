@@ -4,9 +4,11 @@
 #include "C_Case.h"
 #include "C_EmptyCase.h"
 
+
+
 void C_Player::Init()
 {
-    C_Player::sprite = u8"😮";
+    C_Player::sprite = "P";
     C_Player::health = 7;
     C_Player::currentHealth = C_Player::health;
     C_Player::attackPoints = 3;
@@ -61,6 +63,10 @@ void C_Player::ComputeState()
         }
         if (shouldDraw)
             C_Game::Instance->Draw();
+        if (C_Game::Instance->Terrain.EntityManager.Entities.size() == 2) {
+            C_Game::Instance->Terrain.LoadNextMap();
+            break;
+        }
     }
 
     C_Player::OnExitState();
@@ -138,6 +144,11 @@ void C_Player::OnTakeDamage(int dmg)
 
         currentHealth -= dmg;
 
+}
+
+void C_Player::OnDeath()
+{
+    C_Game::Instance->Terrain.LoadGameOver();
 }
 
 

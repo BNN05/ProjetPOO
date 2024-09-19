@@ -33,7 +33,7 @@ void C_Game::StartGame()
     
 	C_Game::Terrain.GenerateMap("MapFiles/level1.csv");
 	Draw();
-	while (true)
+	while (!isOver)
 	{
 		C_Game::Terrain.EntityManager.ComputeEntities();
 	}

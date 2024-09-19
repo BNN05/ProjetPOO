@@ -17,6 +17,7 @@ public:
 	void ClearConsole();
 
 	static bool SetConsoleSize(int cols, int rows);
+	bool isOver = false;
 
 	static C_Game* Instance;
 

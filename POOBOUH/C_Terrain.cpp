@@ -91,11 +91,33 @@ std::vector<C_Case*> C_Terrain::GetPath(Vector2D positionStart, Vector2D positio
 
 void C_Terrain::LoadNextMap()
 {
+	currentLevel++;
 	if (currentLevel < 4)
 	{
+		EntityManager.shouldStopProcessEntity = true;
+		EntityManager.RemoveAllEntity();
 		GenerateMap("MapFiles/level" + std::to_string(++currentLevel) + ".csv");
 	}
+	else {
+		LoadWinner();
+	}
 		
+}
+
+void C_Terrain::LoadGameOver()
+{
+	EntityManager.shouldStopProcessEntity = true;
+	C_Game::Instance->isOver = true;
+	EntityManager.RemoveAllEntity();
+	GenerateMap("MapFiles/GameOver.csv");
+}
+
+void C_Terrain::LoadWinner()
+{
+	EntityManager.shouldStopProcessEntity = true;
+	C_Game::Instance->isOver = true;
+	EntityManager.RemoveAllEntity();
+	GenerateMap("MapFiles/Win.csv");
 }
 
 
@@ -110,10 +132,10 @@ void C_Terrain::GenerateMap(const std::string& mapFilePath)
 	for (int i = 0; i < C_Terrain::lengthX; i++) {
 		for (int j = 0; j < C_Terrain::lengthY; j++) {
 			C_Case* tile = new C_Case();
-			if (v[i][j] != u8"🟫") { //Carré marron
-				tile->Init(u8"ㅤ", Vector2D(i, j)); //Carré invisible
+			if (v[i][j] != "W") { //Carré marron
+				tile->Init(" ", Vector2D(i, j)); //Carré invisible
 				tile->caseType = E_CaseType::Empty;
-				if (v[i][j] != u8"ㅤ") {//Carré invisible
+				if (v[i][j] != " ") {//Carré invisible
 					if ((v[i][j] == "G"))
 					{
 						C_Golem* golem = new C_Golem();
@@ -200,7 +222,8 @@ C_Terrain::C_Terrain(int x, int y) : lengthX(x), lengthY(y) {
 
 void C_Terrain::ComputeEntity()
 {
-	EntityManager.CheckForEntityAlive();
+	if(!C_Game::Instance->isOver)
+		EntityManager.CheckForEntityAlive();
 }
 
 C_Case* C_Terrain::GetCaseByEntity(C_Entity* entity)

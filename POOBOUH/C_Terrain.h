@@ -16,6 +16,9 @@ public:
 	C_EntityManager EntityManager;
 	std::vector<C_Case*> GetPath(Vector2D positionStart, Vector2D positionEnd);
 	void LoadNextMap();
+	void LoadGameOver();
+	void LoadWinner();
+
 	void GenerateMap(const std::string& mapFilePath);
 	void DrawTerrain();
 	C_Terrain(int x, int y);

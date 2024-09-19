@@ -4,10 +4,15 @@
 
 void C_EntityManager::ComputeEntities()
 {
+   int  j = 0;
     for (auto i : C_EntityManager::Entities)
     {
+        if (shouldStopProcessEntity) {
+            shouldStopProcessEntity = false;
+            return;
+        }
         i->OnEnterState(); 
-
+        j++;
     }
     //_getch();
 }
@@ -39,9 +44,15 @@ void C_EntityManager::CheckForEntityAlive()
 {
     for (int i = C_EntityManager::Entities.size()-1; i >= 0; i--)
     {
+        //if (C_EntityManager::Entities.size() == 2 && C_EntityManager::Entities[0] == C_Game::Instance->Player) {
+        //    C_Game::Instance->Terrain.LoadNextMap();
+        //    return;
+        //}
         int ttt = C_EntityManager::Entities[i]->GetCurrentHealth();
         if ( ttt<= 0) {
             C_EntityManager::Entities[i]->OnDeath();
+            if (C_EntityManager::Entities.size() <= 0)
+                return;
             DeleteEntity(C_EntityManager::Entities[i]);
         }
     }
