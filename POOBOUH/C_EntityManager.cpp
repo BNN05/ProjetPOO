@@ -56,6 +56,17 @@ void C_EntityManager::CheckForEntityAlive()
 
     //}
 }
+void C_EntityManager::CheckForEntityToRemove()
+{
+    for (int i = C_EntityManager::Entities.size() - 1; i >= 0; i--)
+    {
+        int ttt = C_EntityManager::Entities[i]->GetCurrentHealth();
+        if (ttt <= 0) {
+            DeleteEntity(C_EntityManager::Entities[i]);
+        }
+    }
+    C_Game::Instance->Draw();
+}
 
 void C_EntityManager::HitAllEntity(int dmg)
 {
@@ -64,7 +75,7 @@ void C_EntityManager::HitAllEntity(int dmg)
         if (i->shouldTakeDmgAll)
             i->OnTakeDamage(dmg);
     }
-    CheckForEntityAlive();
+    CheckForEntityToRemove();
 }
 
 
