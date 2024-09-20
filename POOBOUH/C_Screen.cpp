@@ -32,6 +32,8 @@ void C_Screen::DrawEnemyScreen()
 
 void C_Screen::DrawPlayerScreen()
 {
+    if (C_Game::Instance->Player == nullptr)
+        return;
     playerWidget->displayStats(C_Game::Instance->Player);
     std::cout << u8"𝒜 𝓉𝓉𝒶𝒸𝓀 (𝘚𝘱𝘢𝘤𝘦𝘣𝘢𝘳) " << "| " << u8"𝒮𝓀𝒾𝓅 𝒯𝓊𝓇𝓃 (𝘌𝘯𝘵𝘦𝘳) " << std::endl;
 }

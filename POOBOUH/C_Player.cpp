@@ -59,11 +59,11 @@ void C_Player::ComputeState()
             return;
         default:
             shouldDraw = false;
-            break; // No valid key pressed
+            break; 
         }
         if (shouldDraw)
             C_Game::Instance->Draw();
-        if (C_Game::Instance->Terrain.EntityManager.Entities.size() == 2) {
+        if (C_Game::Instance->Terrain.EntityManager.Entities.size() == 2) { //regarde si il ne reste que le player 
             C_Game::Instance->Terrain.LoadNextMap();
             break;
         }

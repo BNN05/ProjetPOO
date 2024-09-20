@@ -27,6 +27,9 @@ void C_Reaper::ComputeState()
                 if (e->entity != nullptr && e->entity == C_Game::Instance->Player) {
                     e->entity->OnTakeDamage(1 );
                     C_Game::Instance->Terrain.ComputeEntity();
+                    if (C_Game::Instance->isOver) { //regarde si il ne reste que le player 
+                        return;
+                    }
                     C_Entity::attackPoints--;
                     return;
                 }
@@ -34,7 +37,6 @@ void C_Reaper::ComputeState()
         }
         auto path = C_Game::Instance->Terrain.GetPath(this->position, C_Game::Instance->Player->position);
         Move(path[0]->position);
-        std::this_thread::sleep_for(std::chrono::milliseconds(1));
         C_Reaper::currentMovementPoint--;
     }
 }
@@ -52,7 +54,6 @@ void C_Reaper::OnEnterState()
     C_Reaper::currentMovementPoint = movementPoints;
     C_Reaper::ComputeState();
 
-    C_Reaper::ComputeState();
 }
 bool C_Reaper::CanMove()
 {
