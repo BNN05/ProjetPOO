@@ -16,8 +16,14 @@ public:
 	int GetHealth() override {
 		return health;
 	}
+	int GetCurrentHealth() override {
+		return 100;
+	}
 	int GetAttackPoint() override {
 		return attackPoints;
+	}	
+	 bool GetInvincible() override {
+		return true;
 	}
 	int GetMovementPoint() override {
 		return movementPoints;

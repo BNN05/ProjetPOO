@@ -91,12 +91,12 @@ std::vector<C_Case*> C_Terrain::GetPath(Vector2D positionStart, Vector2D positio
 
 void C_Terrain::LoadNextMap()
 {
-	currentLevel++;
-	if (currentLevel < 4)
+ 	if (currentLevel < 4)
 	{
+		currentLevel++;
 		EntityManager.shouldStopProcessEntity = true;
 		EntityManager.RemoveAllEntity();
-		GenerateMap("MapFiles/level" + std::to_string(currentLevel) + ".csv");
+ 		GenerateMap("MapFiles/level" + std::to_string(currentLevel) + ".csv");
 	}
 	else {
 		LoadWinner();
@@ -110,6 +110,7 @@ void C_Terrain::LoadGameOver()
 	C_Game::Instance->isOver = true;
 	EntityManager.RemoveAllEntity();
 	GenerateMap("MapFiles/GameOver.csv");
+	C_Game::Instance->Draw();
 }
 
 void C_Terrain::LoadWinner()
@@ -118,6 +119,7 @@ void C_Terrain::LoadWinner()
 	C_Game::Instance->isOver = true;
 	EntityManager.RemoveAllEntity();
 	GenerateMap("MapFiles/Win.csv");
+	C_Game::Instance->Draw();
 }
 
 

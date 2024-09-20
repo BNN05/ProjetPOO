@@ -28,8 +28,11 @@ void C_Golem::ComputeState()
             {
                 if (e->entity != nullptr && e->entity == C_Game::Instance->Player) {
                     e->entity->OnTakeDamage(1);
-                    C_Game::Instance->Terrain.ComputeEntity();
-                    C_Entity::attackPoints--;
+                    C_Game::Instance->Terrain.ComputeEntity();                    
+                    if (C_Game::Instance->isOver) { //regarde si il ne reste que le player 
+                        return;
+                    }
+                     C_Entity::attackPoints--;
                     return;
                 }
             }
@@ -87,8 +90,6 @@ void C_Golem::OnEnterState()
 {
     C_Golem::currentAttackPoints = attackPoints;
     C_Golem::currentMovementPoint = movementPoints;
-    C_Golem::ComputeState();
-
     C_Golem::ComputeState();
 }
 

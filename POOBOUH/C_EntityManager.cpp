@@ -27,6 +27,14 @@ void C_EntityManager::DeleteEntity(C_Entity* entity)
     Entities.erase(std::remove(Entities.begin(), Entities.end(), entity), Entities.end());
     delete entity;
 }
+void C_EntityManager::TryRemoveAllEntity(C_Entity* entity)
+{
+    if (entity->GetInvincible())
+        return;
+    C_Game::Instance->Terrain.GetCaseByEntity(entity)->entity = nullptr;
+    Entities.erase(std::remove(Entities.begin(), Entities.end(), entity), Entities.end());
+    delete entity;
+}
 void C_EntityManager::RemoveAllEntity()
 {
     for (int i = C_EntityManager::Entities.size() - 1; i >= 0; i--)
@@ -44,28 +52,17 @@ void C_EntityManager::CheckForEntityAlive()
 {
     for (int i = C_EntityManager::Entities.size()-1; i >= 0; i--)
     {
-        //if (C_EntityManager::Entities.size() == 2 && C_EntityManager::Entities[0] == C_Game::Instance->Player) {
-        //    C_Game::Instance->Terrain.LoadNextMap();
-        //    return;
-        //}
+
         int ttt = C_EntityManager::Entities[i]->GetCurrentHealth();
         if ( ttt<= 0) {
             C_EntityManager::Entities[i]->OnDeath();
             if (C_EntityManager::Entities.size() <= 0)
                 return;
-            DeleteEntity(C_EntityManager::Entities[i]);
+            TryRemoveAllEntity(C_EntityManager::Entities[i]);
         }
     }
      C_Game::Instance->Draw();
-    //for (auto i : C_EntityManager::Entities)
-    //{
-    //    if (i->GetCurrentHealth() <= 0) {
-    //        i->OnDeath();
-    //        DeleteEntity(i);
-    //        C_Game::Instance->Draw();
-    //    }
 
-    //}
 }
 void C_EntityManager::CheckForEntityToRemove()
 {

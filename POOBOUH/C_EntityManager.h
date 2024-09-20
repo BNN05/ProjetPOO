@@ -9,6 +9,7 @@ public:
 	void ComputeEntities();
 	void AddEntity(C_Entity* entity);
 	void DeleteEntity(C_Entity* entity);
+	void TryRemoveAllEntity(C_Entity* entity);
 	void RemoveAllEntity();
 
 	void AddPlayer(C_Entity* entity);

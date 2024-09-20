@@ -17,6 +17,7 @@ public:
 	bool shouldPlay;
 	bool shouldTakeDmgAll = true;
 	bool isAlreadyDead = false;
+	bool isInvincible = false;
 
 	int currentHealth;
 	int currentAttackPoints;
@@ -42,6 +43,9 @@ public:
 	}
 	virtual int GetAttackPoint() {
 		return attackPoints;
+	}	
+	virtual bool GetInvincible() {
+		return isInvincible;
 	}
 
 	virtual void SetAttackMultiplier(int aM) { attackMultiplier = aM; }

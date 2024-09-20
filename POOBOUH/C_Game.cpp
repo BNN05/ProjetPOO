@@ -5,7 +5,7 @@
 
 C_Game* C_Game::Instance;
 
-C_Game::C_Game() : Terrain(26,26) , Player(nullptr)
+C_Game::C_Game() : Terrain(26, 26), Player(nullptr)
 {
 	C_Game::Instance = this;
 }
@@ -21,16 +21,17 @@ void C_Game::Init()
 void C_Game::Draw()
 {
 
-    C_Game::ClearConsole();
-	
-	C_Game::Screen.DrawEnemyScreen();
+	C_Game::ClearConsole();
+	if (!isOver)
+		C_Game::Screen.DrawEnemyScreen();
 	C_Game::Terrain.DrawTerrain();
-	C_Game::Screen.DrawPlayerScreen();
+	if (!isOver)
+		C_Game::Screen.DrawPlayerScreen();
 }
 
 void C_Game::StartGame()
 {
-    
+
 	C_Game::Terrain.GenerateMap("MapFiles/level1.csv");
 	Draw();
 	while (!isOver)
@@ -45,32 +46,32 @@ void C_Game::ResetGame()
 
 void C_Game::ClearConsole()
 {
-    //system("cls"); //OLD
-    
-    static const HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
+	//system("cls"); //OLD
 
-    CONSOLE_SCREEN_BUFFER_INFO csbi;
-    COORD topLeft = { 0, 0 };
+	static const HANDLE hOut = GetStdHandle(STD_OUTPUT_HANDLE);
 
- 
-    std::cout.flush();
+	CONSOLE_SCREEN_BUFFER_INFO csbi;
+	COORD topLeft = { 0, 0 };
 
-    
-    if (!GetConsoleScreenBufferInfo(hOut, &csbi)) {
-        // TODO: Handle failure!
-        abort();
-    }
-    DWORD length = csbi.dwSize.X * csbi.dwSize.Y;
 
-    DWORD written;
+	std::cout.flush();
 
-    
-    FillConsoleOutputCharacter(hOut, TEXT(' '), length, topLeft, &written);
 
-    
-    FillConsoleOutputAttribute(hOut, csbi.wAttributes, length, topLeft, &written);
+	if (!GetConsoleScreenBufferInfo(hOut, &csbi)) {
+		// TODO: Handle failure!
+		abort();
+	}
+	DWORD length = csbi.dwSize.X * csbi.dwSize.Y;
 
-    
-    SetConsoleCursorPosition(hOut, topLeft);
+	DWORD written;
+
+
+	FillConsoleOutputCharacter(hOut, TEXT(' '), length, topLeft, &written);
+
+
+	FillConsoleOutputAttribute(hOut, csbi.wAttributes, length, topLeft, &written);
+
+
+	SetConsoleCursorPosition(hOut, topLeft);
 }
 
