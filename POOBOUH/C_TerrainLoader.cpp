@@ -22,7 +22,7 @@ vector<vector<string>> C_TerrainLoader::LoadMap(const string& filename)
     }
 
     file.close();
-    replaceOWithMapData(filename);
+    //replaceOWithMapData(filename);
     return data; // Return loaded map data
 }
 
@@ -41,40 +41,40 @@ void C_TerrainLoader::parseLineInitial(const string& line, vector<string>& row)
     }
 }
 
-void C_TerrainLoader::replaceOWithMapData(const string& filename)
-{
-    ifstream file(filename);
-    if (!file.is_open())
-    {
-        cerr << "Map file " << filename << " does not exist" << endl;
-        return;
-    }
+//void C_TerrainLoader::replaceOWithMapData(const string& filename)
+//{
+//    ifstream file(filename);
+//    if (!file.is_open())
+//    {
+//        cerr << "Map file " << filename << " does not exist" << endl;
+//        return;
+//    }
+//
+//    string line;
+//    size_t rowIndex = 0;
+//    while (getline(file, line) && rowIndex < data.size())
+//    {
+//        stringstream ss(line);
+//        string cell;
+//        size_t colIndex = 0;
+//        while (getline(ss, cell, ','))
+//        {
+//            if (colIndex < data[rowIndex].size() && !cell.empty() && data[rowIndex][colIndex] == "o")
+//                data[rowIndex][colIndex] = cell.empty() ? u8"⬛" : cell;
+//            colIndex++;
+//        }
+//        rowIndex++;
+//    }
+//
+//    file.close();
+//}
 
-    string line;
-    size_t rowIndex = 0;
-    while (getline(file, line) && rowIndex < data.size())
-    {
-        stringstream ss(line);
-        string cell;
-        size_t colIndex = 0;
-        while (getline(ss, cell, ','))
-        {
-            if (colIndex < data[rowIndex].size() && !cell.empty() && data[rowIndex][colIndex] == "o")
-                data[rowIndex][colIndex] = cell.empty() ? u8"⬛" : cell;
-            colIndex++;
-        }
-        rowIndex++;
-    }
-
-    file.close();
-}
-
-void C_TerrainLoader::PrintMapData()
-{
-    for (const auto& row : data) {
-        for (const auto& cell : row) {
-            std::cout << cell << ' ';
-        }
-        std::cout << std::endl;
-    }
-}
+//void C_TerrainLoader::PrintMapData()
+//{
+//    for (const auto& row : data) {
+//        for (const auto& cell : row) {
+//            std::cout << cell << ' ';
+//        }
+//        std::cout << std::endl;
+//    }
+//}

@@ -2,7 +2,7 @@
 
 void C_Chest::Init()
 {
-    C_Chest::sprite = u8"🧰";
+    C_Chest::sprite = u8"🟫";
     C_Chest::health = 1;
     C_Chest::attackPoints = 0;
     C_Chest::movementPoints = 0;
