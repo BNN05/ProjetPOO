@@ -32,18 +32,15 @@ std::vector<C_Case*> C_Terrain::GetPath(Vector2D positionStart, Vector2D positio
 	std::vector<C_Case*> path;
 	std::queue<Vector2D> queue;
 
-	// Pour garder la trace des cases déjà visitées
 	std::vector<std::vector<bool>> visited(lengthX, std::vector<bool>(lengthY, false));
 
-	// Définir les mouvements possibles (haut, bas, gauche, droite)
 	std::vector<Vector2D> directions = {
-		{0, 1}, {1, 0}, {0, -1}, {-1, 0} // Haut, Droite, Bas, Gauche
+		{0, 1}, {1, 0}, {0, -1}, {-1, 0} 
 	};
 
 	queue.push(positionStart);
 	visited[positionStart.x][positionStart.y] = true;
 
-	// Pour suivre le chemin
 	std::map<Vector2D, Vector2D> cameFrom;
 
 	while (!queue.empty()) {
@@ -51,13 +48,12 @@ std::vector<C_Case*> C_Terrain::GetPath(Vector2D positionStart, Vector2D positio
 		queue.pop();
 
 		if (current == positionEnd) {
-			break; // On a atteint la destination
+			break; 
 		}
 
 		for (const auto& direction : directions) {
 			Vector2D neighbor = current + direction;
 
-			// Vérifier que le voisin est dans les limites de la carte
 			if (neighbor.x < 0 || neighbor.x >= lengthX ||
 				neighbor.y < 0 || neighbor.y >= lengthY) {
 				continue;
@@ -65,27 +61,25 @@ std::vector<C_Case*> C_Terrain::GetPath(Vector2D positionStart, Vector2D positio
 
 			C_Case* caseNeighbor = GetCase(neighbor.x, neighbor.y);
 			if (caseNeighbor->caseType == E_CaseType::Wall || visited[neighbor.x][neighbor.y]) {
-				continue; // Ne pas traverser les murs et ne pas revisiter
+				continue; 
 			}
 
-			// Marquer comme visité
 			visited[neighbor.x][neighbor.y] = true;
 			queue.push(neighbor);
-			cameFrom[neighbor] = current; // Suivre d'où vient la case
+			cameFrom[neighbor] = current; 
 		}
 	}
 
-	// Reconstruire le chemin
 	Vector2D current = positionEnd;
 	while (current != positionStart) {
 		path.push_back(GetCase(current.x, current.y));
 		if (cameFrom.find(current) == cameFrom.end()) {
-			break; // Pas de chemin trouvé
+			break; 
 		}
 		current = cameFrom[current];
 	}
 
-	std::reverse(path.begin(), path.end()); // Le chemin est reconstruit à l'envers
+	std::reverse(path.begin(), path.end());
 	return path;
 }
 
