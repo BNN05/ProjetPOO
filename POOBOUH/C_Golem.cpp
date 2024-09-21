@@ -1,20 +1,16 @@
 ﻿#include "C_Golem.h"
-#include "C_Case.h"
-#include <random>
+#include <cstdlib>
 #include "C_Game.h"
-#include <chrono>
-#include <thread>
+#include <ctime>
+#include <random>
 
-
-
-void C_Golem::Init()
+void C_Golem::OnTakeDamage(int dmg)
 {
-    C_Golem::sprite = u8"🗿";
-    C_Golem::health = 5;
-    C_Golem::attackPoints = 1;
-    C_Golem::movementPoints = 1;
-    C_Golem::shouldPlay = true;
-    currentHealth = C_Golem::health;
+    std::srand(std::time(0));
+    int randomValue = std::rand() % 3;
+    if (randomValue != 0) {
+        C_Monster::OnTakeDamage(dmg);
+    }
 }
 
 void C_Golem::ComputeState()
@@ -28,11 +24,11 @@ void C_Golem::ComputeState()
             {
                 if (e->entity != nullptr && e->entity == C_Game::Instance->Player) {
                     e->entity->OnTakeDamage(1);
-                    C_Game::Instance->Terrain.ComputeEntity();                    
+                    C_Game::Instance->Terrain.ComputeEntity();
                     if (C_Game::Instance->isOver) { //regarde si il ne reste que le player 
                         return;
                     }
-                     C_Entity::attackPoints--;
+                    C_Entity::attackPoints--;
                     return;
                 }
             }
@@ -76,48 +72,17 @@ void C_Golem::ComputeState()
 
                 C_Golem::currentMovementPoint--;
 
-                std::this_thread::sleep_for(std::chrono::milliseconds(1));
             }
 
         }
     }
 
 
-    C_Golem::OnExitState();
-}
-
-void C_Golem::OnEnterState()
-{
-    C_Golem::currentAttackPoints = attackPoints;
-    C_Golem::currentMovementPoint = movementPoints;
-    C_Golem::ComputeState();
-}
-
-void C_Golem::OnTakeDamage(int dmg)
-{
-    std::srand(std::time(0));
-
-    int randomValue = std::rand() % 3;
-
-    if (randomValue == 0) {
-        //dont take dmg
-    }
-    else {
-        currentHealth -= dmg;
-    }
+    OnExitState();
 }
 
 void C_Golem::OnDeath()
 {
-    C_Game::Instance->Player->SetAttackMultiplier(C_Game::Instance->Player->attackMultiplier + 1);
+    // Augmente l'attaque du player
+    C_Game::Instance->Player->SetAttackMultiplier(C_Game::Instance->Player->GetAttackMultiplier() + 1);
 }
-
-bool C_Golem::CanMove()
-{
-    if (C_Golem::currentMovementPoint > 0)
-        return true;
-    return false;
-}
-
-
-

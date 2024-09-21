@@ -1,26 +1,18 @@
 ﻿#include "C_Spectre.h"
-#include "C_Case.h"
-#include <random>
 #include "C_Game.h"
-#include <chrono>
-#include <thread>
-void C_Spectre::Init()
+#include <random>
+
+void C_Spectre::OnDeath()
 {
-    C_Spectre::sprite = u8"👻";
-    C_Spectre::health = 3;
-    C_Spectre::attackPoints = 2;
-    C_Spectre::movementPoints = 3;
-    C_Spectre::shouldPlay = true;
-    currentHealth = C_Spectre::health;
+    // Heal le joueur à sa mort
+    C_Game::Instance->Player->SetCurrentHealth(C_Game::Instance->Player->GetHealth());
 }
 
-void C_Spectre::OnEnterState()
-{
-    C_Spectre::currentAttackPoints = attackPoints;
-    C_Spectre::currentMovementPoint = movementPoints;
-    C_Spectre::ComputeState();
-}
 
+
+
+/// TO DO:
+/// IA fuite du Player
 void C_Spectre::ComputeState()
 {
     if (CanMove())
@@ -59,29 +51,10 @@ void C_Spectre::ComputeState()
 
             // Déplacer le monstre vers la nouvelle position
             Move(newPosition);
-            std::this_thread::sleep_for(std::chrono::milliseconds(1));
         }
 
     }
 
 
-    C_Spectre::OnExitState();
-}
-
-bool C_Spectre::CanMove()
-{
-    if (C_Spectre::currentMovementPoint > 0)
-        return true;
-    return false;
-}
-
-void C_Spectre::OnExitState()
-{
-    C_Game::Instance->Draw();
-}
-
-void C_Spectre::OnDeath()
-{
-    //Heal le joueur
-    C_Game::Instance->Player->SetCurrentHealth(C_Game::Instance->Player->GetHealth());
+    OnExitState();
 }

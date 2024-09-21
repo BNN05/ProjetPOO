@@ -23,42 +23,21 @@ public:
 	int currentAttackPoints;
 	int currentMovementPoint;
 
-	virtual std::string GetSprite() {
-		return sprite;
-	}
-	virtual int GetHealth() {
-		return health;
-	}
-	virtual int GetCurrentHealth() {
-		return currentHealth;
-	}
-	virtual void SetCurrentHealth(int health) {
-		currentHealth = health;
-	}
-	virtual int GetCurrentAttackPoints() {
-		return currentAttackPoints;
-	}
-	virtual int GetCurrentMovementPoints() {
-		return currentMovementPoint;
-	}
-	virtual int GetAttackPoint() {
-		return attackPoints;
-	}	
-	virtual bool GetInvincible() {
-		return isInvincible;
-	}
+	virtual std::string GetSprite() { return sprite; }
+	virtual int GetHealth() { return health; }
+	virtual int GetCurrentHealth() { return currentHealth; }
+	virtual void SetCurrentHealth(int health) { currentHealth = health; }
+	virtual int GetCurrentAttackPoints() { return currentAttackPoints; }
+	virtual int GetCurrentMovementPoints() { return currentMovementPoint; }
+	virtual int GetAttackPoint() { return attackPoints; }	
+	virtual bool GetInvincible() { return isInvincible; }
 
 	virtual void SetAttackMultiplier(int aM) { attackMultiplier = aM; }
 
-	virtual int GetAttackMultiplier() {
-		return 1;
-	}
-	virtual int GetMovementPoint() {
-		return movementPoints;
-	}	
-	virtual bool ShouldPlay() {
-		return shouldPlay;
-	}
+	virtual int GetAttackMultiplier() {	return attackMultiplier; }
+	virtual int GetMovementPoint() { return movementPoints;	}	
+	virtual bool ShouldPlay() {	return shouldPlay; }
+
 	C_Entity(int health = 5, int attackPoints = 5, int movementPoints = 5)
 		: health(health), attackPoints(attackPoints), movementPoints(movementPoints), shouldPlay(false)
 	{
