@@ -1,44 +1,17 @@
-#pragma once
-#include <string>
+﻿#pragma once
 #include "C_Monster.h"
+
 class C_Reaper : public C_Monster
 {
 public:
-	std::string sprite;
-	int health;
-	int attackPoints;
-	int movementPoints;
-	bool shouldPlay;
+    C_Reaper() : C_Monster(2, 2, 3, u8"🕷️") {}
 
-	std::string GetSprite() override {
-		return sprite;
-	}
-	int GetHealth() override {
-		return health;
-	}
-	int GetAttackPoint() override {
-		return attackPoints;
-	}
-	int GetMovementPoint() override {
-		return movementPoints;
-	}
-	bool ShouldPlay() override {
-		return shouldPlay;
-	}
+    void Init() override {
+        C_Monster::Init();
+        shouldTakeDmgAll = false;
+    }
 
-	void Init() override;
-	void ComputeState() override;
-	void OnEnterState() override;
-	void OnDeath() override;
-	bool CanMove() override;
+    void ComputeState() override;
 
-
-	C_Reaper()
-		: C_Monster(100, 10), // Appel du constructeur de C_Monster
-		sprite("default_sprite"),
-		movementPoints(5),
-		shouldPlay(false)
-	{
-		shouldTakeDmgAll = false;
-	}
+    void OnDeath() override;
 };

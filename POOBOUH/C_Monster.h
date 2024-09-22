@@ -4,22 +4,20 @@
 class C_Monster : public C_Entity
 {
 public:
-	void OnEnterState() override;
-	void ComputeState() override;
-	void OnExitState() override;
+    C_Monster(int health, int attackPoints, int movementPoints, const std::string& sprite)
+        : C_Entity(health, attackPoints, movementPoints)
+    {
+        this->sprite = sprite;
+    }
 
-	void Move(Vector2D newPos) override;
-	void Attack() override {};
-	void EndTurn() override {};
+    virtual void Init() override {}
+    virtual void OnEnterState() override;
+    virtual void OnExitState() override;
 
-	void OnTakeDamage(int dmg) override;
-	void OnDeath() override;
+    virtual void Move(Vector2D newPos) override;
+    virtual void Attack() override {}
+    virtual void EndTurn() override {}
 
-	C_Monster(int health, int attackPoints) {
-		this->health = health;
-		this->attackPoints = attackPoints;
-	}
-
-
+    virtual void OnTakeDamage(int dmg) override;
+    virtual void OnDeath() override;
 };
-

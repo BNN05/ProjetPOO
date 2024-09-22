@@ -1,19 +1,15 @@
 ﻿#include "C_Reaper.h"
 #include "C_Game.h"
-#include <chrono>
-#include <thread>
 
-
-void C_Reaper::Init()
+void C_Reaper::OnDeath()
 {
-    C_Reaper::sprite = u8"🕷️";
-    C_Reaper::health = 2;
-    C_Reaper::attackPoints = 2;
-    C_Reaper::movementPoints = 3;
-    C_Reaper::shouldPlay = true;
-    currentHealth = C_Reaper::health;
-    shouldTakeDmgAll = false;
+    // Dégats à tout les ennemies dans la salle
+    if (isAlreadyDead)
+        return;
+    isAlreadyDead = true;
+    C_Game::Instance->Terrain.EntityManager.HitAllEntity(2);
 }
+
 
 void C_Reaper::ComputeState()
 {
@@ -25,40 +21,20 @@ void C_Reaper::ComputeState()
             for (auto e : potentialCase)
             {
                 if (e->entity != nullptr && e->entity == C_Game::Instance->Player) {
-                    e->entity->OnTakeDamage(1 );
+                    e->entity->OnTakeDamage(1);
                     C_Game::Instance->Terrain.ComputeEntity();
                     if (C_Game::Instance->isOver) { //regarde si il ne reste que le player 
                         return;
                     }
-                    C_Entity::attackPoints--;
+                    currentAttackPoints--;
                     return;
                 }
             }
         }
         auto path = C_Game::Instance->Terrain.GetPath(this->position, C_Game::Instance->Player->position);
         Move(path[0]->position);
-        C_Reaper::currentMovementPoint--;
+        currentMovementPoint--;
     }
-}
-void C_Reaper::OnDeath()
-{
-    if (isAlreadyDead)
-        return;
-    isAlreadyDead = true;
-    C_Game::Instance->Terrain.EntityManager.HitAllEntity(2);
-}
 
-void C_Reaper::OnEnterState()
-{
-    C_Reaper::currentAttackPoints = attackPoints;
-    C_Reaper::currentMovementPoint = movementPoints;
-    C_Reaper::ComputeState();
-
+    
 }
-bool C_Reaper::CanMove()
-{
-    if (C_Reaper::currentMovementPoint > 0)
-        return true;
-    return false;
-}
-

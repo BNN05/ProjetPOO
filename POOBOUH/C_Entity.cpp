@@ -4,7 +4,6 @@ void C_Entity::OnEnterState()
 {
     currentAttackPoints = attackPoints;
     currentMovementPoint = movementPoints;
-    //currentHealth = health;
 }
 
 bool C_Entity::CanMove()
@@ -23,11 +22,7 @@ bool C_Entity::CanAttack()
 
 void C_Entity::Move(Vector2D newPos)
 {
-    //position = newPos;
-    //// Notifie tous les écouteurs de l'événement de déplacement
-    //for (IEventListener* listener : listeners) {
-    //    listener->OnMove(newPos);
-    //}
+    
 }
 
 void C_Entity::AddListener(IEventListener* listener) {

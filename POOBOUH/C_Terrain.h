@@ -14,7 +14,9 @@ public:
 	int currentLevel = 1;
 	C_Case*** map;
 	C_EntityManager EntityManager;
-	std::vector<C_Case*> GetPath(Vector2D positionStart, Vector2D positionEnd);
+	std::vector<C_Case*> GetPath(Vector2D positionStart, Vector2D positionEnd); 
+	std::vector<C_Case*> FleePath(Vector2D positionStart, Vector2D playerPosition, int maxMoves);
+	double Distance(const Vector2D& a, const Vector2D& b);
 	void LoadNextMap();
 	void LoadGameOver();
 	void LoadWinner();
