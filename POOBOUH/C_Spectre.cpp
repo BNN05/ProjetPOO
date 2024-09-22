@@ -9,10 +9,6 @@ void C_Spectre::OnDeath()
 }
 
 
-
-
-/// TO DO:
-/// IA fuite du Player
 void C_Spectre::ComputeState()
 {
     while (CanMove())

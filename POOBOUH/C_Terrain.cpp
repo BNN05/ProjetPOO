@@ -201,10 +201,10 @@ void C_Terrain::GenerateMap(const std::string& mapFilePath)
 	for (int i = 0; i < C_Terrain::lengthX; i++) {
 		for (int j = 0; j < C_Terrain::lengthY; j++) {
 			C_Case* tile = new C_Case();
-			if (v[i][j] != u8"W") { //Carré marron
-				tile->Init(u8" ", Vector2D(i, j)); //Carré invisible
+			if (v[i][j] != u8"🟫") { //Carré marron
+				tile->Init(u8"ㅤ", Vector2D(i, j)); //Carré invisible
 				tile->caseType = E_CaseType::Empty;
-				if (v[i][j] != u8" ") {//Carré invisible
+				if (v[i][j] != u8"ㅤ") {//Carré invisible
 					if ((v[i][j] == "G"))
 					{
 						C_Golem* golem = new C_Golem();
