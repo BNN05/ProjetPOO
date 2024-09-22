@@ -26,7 +26,7 @@ void C_Reaper::ComputeState()
                     if (C_Game::Instance->isOver) { //regarde si il ne reste que le player 
                         return;
                     }
-                    attackPoints--;
+                    currentAttackPoints--;
                     return;
                 }
             }

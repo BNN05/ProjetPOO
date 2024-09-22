@@ -83,6 +83,79 @@ std::vector<C_Case*> C_Terrain::GetPath(Vector2D positionStart, Vector2D positio
 	return path;
 }
 
+std::vector<C_Case*> C_Terrain::FleePath(Vector2D positionStart, Vector2D playerPosition, int maxMoves)
+{
+	std::vector<C_Case*> path;
+	std::queue<std::pair<Vector2D, int>> queue;
+
+	std::vector<std::vector<bool>> visited(lengthX, std::vector<bool>(lengthY, false));
+
+	std::vector<Vector2D> directions = {
+		{0, 1}, {1, 0}, {0, -1}, {-1, 0}
+	};
+
+	queue.push({ positionStart, 0 });  
+	visited[positionStart.x][positionStart.y] = true;
+
+	std::map<Vector2D, Vector2D> cameFrom;
+	Vector2D furthestPosition = positionStart;
+	double maxDistance = Distance(positionStart, playerPosition); 
+
+	while (!queue.empty()) {
+		std::pair<Vector2D, int> front = queue.front();
+		Vector2D current = front.first;
+		int moves = front.second;
+		queue.pop();
+
+		if (moves >= maxMoves) {
+			continue;
+		}
+
+		for (const auto& direction : directions) {
+			Vector2D neighbor = current + direction;
+
+			if (neighbor.x < 0 || neighbor.x >= lengthX ||
+				neighbor.y < 0 || neighbor.y >= lengthY) {
+				continue;
+			}
+
+			C_Case* caseNeighbor = GetCase(neighbor.x, neighbor.y);
+
+			if (caseNeighbor->caseType == E_CaseType::Wall || visited[neighbor.x][neighbor.y]) {
+				continue;
+			}
+
+			visited[neighbor.x][neighbor.y] = true;
+			queue.push({ neighbor, moves + 1 }); 
+			cameFrom[neighbor] = current;
+
+			double distanceToPlayer = Distance(neighbor, playerPosition);
+			if (distanceToPlayer > maxDistance) {
+				maxDistance = distanceToPlayer;
+				furthestPosition = neighbor;
+			}
+		}
+	}
+
+	Vector2D current = furthestPosition;
+	while (current != positionStart) {
+		path.push_back(GetCase(current.x, current.y));
+		if (cameFrom.find(current) == cameFrom.end()) {
+			break;
+		}
+		current = cameFrom[current];
+	}
+
+	std::reverse(path.begin(), path.end());
+	return path;
+}
+
+double C_Terrain::Distance(const Vector2D& a, const Vector2D& b)
+{
+	return sqrt((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y));
+}
+
+
 void C_Terrain::LoadNextMap()
 {
  	if (currentLevel < 4)
@@ -128,10 +201,10 @@ void C_Terrain::GenerateMap(const std::string& mapFilePath)
 	for (int i = 0; i < C_Terrain::lengthX; i++) {
 		for (int j = 0; j < C_Terrain::lengthY; j++) {
 			C_Case* tile = new C_Case();
-			if (v[i][j] != u8"🟫") { //Carré marron
-				tile->Init(u8"ㅤ", Vector2D(i, j)); //Carré invisible
+			if (v[i][j] != u8"W") { //Carré marron
+				tile->Init(u8" ", Vector2D(i, j)); //Carré invisible
 				tile->caseType = E_CaseType::Empty;
-				if (v[i][j] != u8"ㅤ") {//Carré invisible
+				if (v[i][j] != u8" ") {//Carré invisible
 					if ((v[i][j] == "G"))
 					{
 						C_Golem* golem = new C_Golem();
